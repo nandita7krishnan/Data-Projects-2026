@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c \":*)",
+      "Bash(python3 main.py seed)",
+      "Bash(python3 main.py status)"
+    ]
+  }
+}

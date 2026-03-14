@@ -1,0 +1,561 @@
+{
+  "concepts": [
+    {
+      "name": "Transformer",
+      "definition": "A neural network architecture introduced in 'Attention Is All You Need' (2017) that relies entirely on self-attention mechanisms to process sequences. It replaced recurrent networks and became the backbone of modern large language models.",
+      "category": "Architecture",
+      "difficulty": "intermediate",
+      "example_use_cases": ["Text generation", "Machine translation", "Code completion", "Image classification (ViT)"],
+      "related_tools": ["PyTorch", "TensorFlow", "HuggingFace Transformers"],
+      "source_references": ["Vaswani et al. 2017 - Attention Is All You Need"]
+    },
+    {
+      "name": "Attention Mechanism",
+      "definition": "A technique that allows a model to dynamically weight the importance of different parts of the input when producing an output. Self-attention lets each token in a sequence attend to all other tokens, capturing long-range dependencies.",
+      "category": "Technique",
+      "difficulty": "intermediate",
+      "example_use_cases": ["Long-range dependency modeling", "Cross-modal alignment", "Summarization"],
+      "related_tools": ["PyTorch", "FlashAttention"],
+      "source_references": ["Bahdanau et al. 2014", "Vaswani et al. 2017"]
+    },
+    {
+      "name": "Large Language Model",
+      "definition": "A neural network with billions of parameters trained on massive text corpora to understand and generate human language. LLMs learn statistical patterns across language and can perform a wide range of tasks through prompting.",
+      "category": "Model",
+      "difficulty": "beginner",
+      "example_use_cases": ["Chatbots", "Code generation", "Summarization", "Question answering"],
+      "related_tools": ["GPT-4", "Claude", "Llama", "Mistral"],
+      "source_references": ["Brown et al. 2020 - GPT-3", "Anthropic Claude technical report"]
+    },
+    {
+      "name": "Tokenization",
+      "definition": "The process of converting raw text into tokens — discrete units (words, subwords, or characters) that a model can process. Tokenizers like BPE and WordPiece build vocabularies that balance coverage and efficiency.",
+      "category": "Technique",
+      "difficulty": "beginner",
+      "example_use_cases": ["Pre-processing text for LLMs", "Measuring context window usage", "Multilingual NLP"],
+      "related_tools": ["tiktoken", "HuggingFace Tokenizers", "SentencePiece"],
+      "source_references": ["Sennrich et al. 2016 - BPE for NMT"]
+    },
+    {
+      "name": "Embedding",
+      "definition": "A dense vector representation of text, images, or other data in a continuous high-dimensional space. Semantically similar items are placed close together, enabling similarity search and downstream ML tasks.",
+      "category": "Technique",
+      "difficulty": "beginner",
+      "example_use_cases": ["Semantic search", "Recommendation systems", "Clustering", "RAG retrieval"],
+      "related_tools": ["SentenceTransformers", "OpenAI Embeddings", "Cohere Embed"],
+      "source_references": ["Mikolov et al. 2013 - Word2Vec", "Reimers & Gurevych 2019 - SBERT"]
+    },
+    {
+      "name": "BERT",
+      "definition": "Bidirectional Encoder Representations from Transformers — a Transformer model pre-trained with masked language modeling and next-sentence prediction. BERT excels at understanding tasks like classification, NER, and Q&A.",
+      "category": "Model",
+      "difficulty": "intermediate",
+      "example_use_cases": ["Text classification", "Named entity recognition", "Sentence similarity"],
+      "related_tools": ["HuggingFace Transformers", "sentence-transformers"],
+      "source_references": ["Devlin et al. 2018 - BERT"]
+    },
+    {
+      "name": "GPT",
+      "definition": "Generative Pre-trained Transformer — a family of autoregressive language models trained to predict the next token. GPT models (GPT-2, GPT-3, GPT-4) are the foundation of modern conversational AI and text generation.",
+      "category": "Model",
+      "difficulty": "beginner",
+      "example_use_cases": ["Text generation", "Chat assistants", "Summarization", "Code generation"],
+      "related_tools": ["OpenAI API", "LangChain", "LlamaIndex"],
+      "source_references": ["Radford et al. 2018, 2019", "Brown et al. 2020"]
+    },
+    {
+      "name": "Context Window",
+      "definition": "The maximum number of tokens an LLM can process at once — both input and output combined. Larger context windows allow longer documents, conversation histories, and more complex prompts.",
+      "category": "Concept",
+      "difficulty": "beginner",
+      "example_use_cases": ["Processing long documents", "Multi-turn conversations", "Codebase analysis"],
+      "related_tools": ["GPT-4 (128k)", "Claude (200k)", "Gemini (1M)"],
+      "source_references": []
+    },
+    {
+      "name": "Token",
+      "definition": "The basic unit of text that LLMs process. A token is roughly 4 characters or 0.75 words in English. Models have token limits for both input and output, which determines how much text they can handle at once.",
+      "category": "Concept",
+      "difficulty": "beginner",
+      "example_use_cases": ["Pricing API calls", "Measuring prompt length", "Setting output limits"],
+      "related_tools": ["tiktoken"],
+      "source_references": []
+    },
+    {
+      "name": "Retrieval-Augmented Generation",
+      "definition": "An architecture that enhances LLM responses by first retrieving relevant documents from an external knowledge base, then conditioning the LLM's generation on those retrieved documents. RAG reduces hallucinations and keeps knowledge up-to-date without retraining.",
+      "category": "Architecture",
+      "difficulty": "intermediate",
+      "example_use_cases": ["Enterprise Q&A over internal docs", "Customer support bots", "Research assistants", "Code documentation search"],
+      "related_tools": ["LangChain", "LlamaIndex", "Haystack"],
+      "source_references": ["Lewis et al. 2020 - Retrieval-Augmented Generation for NLP"]
+    },
+    {
+      "name": "GraphRAG",
+      "definition": "A variant of RAG that uses a knowledge graph as its primary retrieval structure. Instead of fetching similar text chunks, GraphRAG traverses concept relationships to find contextually relevant information, enabling multi-hop reasoning and structured knowledge retrieval.",
+      "category": "Architecture",
+      "difficulty": "advanced",
+      "example_use_cases": ["Multi-hop question answering", "AI concept exploration", "Medical knowledge retrieval", "Legal document analysis"],
+      "related_tools": ["Neo4j", "NetworkX", "LangChain", "Microsoft GraphRAG"],
+      "source_references": ["Edge et al. 2024 - From Local to Global: A GraphRAG Approach"]
+    },
+    {
+      "name": "Semantic Search",
+      "definition": "Search that understands the meaning and intent of a query, rather than matching exact keywords. Uses embeddings to find results that are semantically similar even if they use different words.",
+      "category": "Technique",
+      "difficulty": "beginner",
+      "example_use_cases": ["Document search", "E-commerce product discovery", "Legal case retrieval"],
+      "related_tools": ["FAISS", "ChromaDB", "Pinecone", "Elasticsearch"],
+      "source_references": []
+    },
+    {
+      "name": "Dense Retrieval",
+      "definition": "A retrieval approach where both queries and documents are encoded into dense vectors using neural networks (bi-encoders), and similarity is computed via dot product or cosine distance. More semantically aware than sparse retrieval.",
+      "category": "Technique",
+      "difficulty": "intermediate",
+      "example_use_cases": ["Open-domain QA", "RAG pipelines", "Passage retrieval"],
+      "related_tools": ["FAISS", "DPR", "sentence-transformers"],
+      "source_references": ["Karpukhin et al. 2020 - DPR"]
+    },
+    {
+      "name": "Sparse Retrieval",
+      "definition": "A retrieval approach based on exact or weighted keyword matching using inverted indices. Algorithms like BM25 rank documents by term frequency and inverse document frequency. Fast and interpretable but misses semantic similarity.",
+      "category": "Technique",
+      "difficulty": "beginner",
+      "example_use_cases": ["Traditional search engines", "Hybrid search first stage", "Legal search"],
+      "related_tools": ["Elasticsearch", "Lucene", "BM25"],
+      "source_references": []
+    },
+    {
+      "name": "BM25",
+      "definition": "Best Match 25 — a probabilistic ranking function used in sparse retrieval. It improves on TF-IDF by incorporating document length normalization and term saturation, making it the gold standard for keyword-based retrieval.",
+      "category": "Algorithm",
+      "difficulty": "intermediate",
+      "example_use_cases": ["First-stage retrieval in hybrid search", "Legal document search", "Email search"],
+      "related_tools": ["Elasticsearch", "Lucene", "rank_bm25"],
+      "source_references": ["Robertson & Zaragoza 2009"]
+    },
+    {
+      "name": "Hybrid Search",
+      "definition": "A retrieval strategy that combines dense (semantic) and sparse (keyword) retrieval to get the best of both worlds. Results from both methods are merged using reciprocal rank fusion or weighted combination.",
+      "category": "Technique",
+      "difficulty": "intermediate",
+      "example_use_cases": ["Enterprise search", "E-commerce", "RAG pipelines with better recall"],
+      "related_tools": ["Weaviate", "Pinecone", "Elasticsearch", "LangChain"],
+      "source_references": []
+    },
+    {
+      "name": "HyDE",
+      "definition": "Hypothetical Document Embeddings — a technique where the LLM first generates a hypothetical answer to the query, then retrieves documents similar to that hypothetical answer rather than the original query. Improves retrieval for abstract or complex questions.",
+      "category": "Technique",
+      "difficulty": "advanced",
+      "example_use_cases": ["Complex Q&A", "Research paper retrieval", "RAG quality improvement"],
+      "related_tools": ["LangChain", "LlamaIndex"],
+      "source_references": ["Gao et al. 2022 - Precise Zero-Shot Dense Retrieval without Relevance Labels"]
+    },
+    {
+      "name": "Multi-hop Reasoning",
+      "definition": "The ability to answer questions that require chaining multiple retrieval steps or reasoning steps across different pieces of information. For example, 'Who is the CEO of the company that makes GPT-4?' requires two hops.",
+      "category": "Technique",
+      "difficulty": "advanced",
+      "example_use_cases": ["Complex Q&A", "Knowledge graph traversal", "Research assistance"],
+      "related_tools": ["GraphRAG", "ReAct", "LangChain Agents"],
+      "source_references": ["Yang et al. 2018 - HotpotQA"]
+    },
+    {
+      "name": "Reranker",
+      "definition": "A model (typically a cross-encoder) that takes a query and a retrieved document and produces a relevance score. Used as a second-stage after initial retrieval to reorder candidates by true relevance, significantly improving precision.",
+      "category": "Technique",
+      "difficulty": "intermediate",
+      "example_use_cases": ["Improving RAG precision", "Search quality", "Document filtering"],
+      "related_tools": ["Cohere Rerank", "cross-encoder/ms-marco", "sentence-transformers"],
+      "source_references": []
+    },
+    {
+      "name": "Chunking",
+      "definition": "The process of splitting long documents into smaller, overlapping pieces (chunks) before indexing them in a vector store. Chunk size and overlap are critical hyperparameters that affect retrieval quality.",
+      "category": "Technique",
+      "difficulty": "beginner",
+      "example_use_cases": ["Document indexing for RAG", "PDF processing", "Code splitting"],
+      "related_tools": ["LangChain TextSplitter", "LlamaIndex node parser"],
+      "source_references": []
+    },
+    {
+      "name": "Document Loader",
+      "definition": "A component that reads documents from various sources (PDF, web pages, databases, APIs) and converts them into a standard format for downstream processing in a RAG pipeline.",
+      "category": "Tool",
+      "difficulty": "beginner",
+      "example_use_cases": ["Ingesting PDFs", "Scraping web pages", "Reading databases"],
+      "related_tools": ["LangChain loaders", "LlamaIndex readers", "Unstructured.io"],
+      "source_references": []
+    },
+    {
+      "name": "Vector Database",
+      "definition": "A database optimized for storing and querying high-dimensional embedding vectors. Supports approximate nearest neighbor (ANN) search to find the most similar vectors to a query in milliseconds.",
+      "category": "Infrastructure",
+      "difficulty": "intermediate",
+      "example_use_cases": ["RAG document storage", "Recommendation systems", "Semantic search at scale"],
+      "related_tools": ["Pinecone", "Weaviate", "Qdrant", "ChromaDB", "FAISS"],
+      "source_references": []
+    },
+    {
+      "name": "FAISS",
+      "definition": "Facebook AI Similarity Search — an open-source library for efficient similarity search and clustering of dense vectors. Supports billion-scale ANN search with various index types (Flat, IVF, HNSW).",
+      "category": "Library",
+      "difficulty": "intermediate",
+      "example_use_cases": ["Local vector search", "RAG retrieval", "Large-scale embedding search"],
+      "related_tools": ["LangChain", "LlamaIndex"],
+      "source_references": ["Johnson et al. 2019 - Billion-scale similarity search with GPUs"]
+    },
+    {
+      "name": "ChromaDB",
+      "definition": "An open-source, developer-friendly vector database designed for AI applications. Supports local in-memory use and persistent storage, with a simple Python API and metadata filtering.",
+      "category": "Tool",
+      "difficulty": "beginner",
+      "example_use_cases": ["Local RAG development", "Prototyping semantic search", "Small-to-medium scale retrieval"],
+      "related_tools": ["LangChain", "LlamaIndex"],
+      "source_references": []
+    },
+    {
+      "name": "Pinecone",
+      "definition": "A managed, cloud-native vector database offering serverless scaling, metadata filtering, and hybrid search. No infrastructure management required — ideal for production RAG deployments.",
+      "category": "Tool",
+      "difficulty": "beginner",
+      "example_use_cases": ["Production RAG", "Recommendation engines", "Semantic search at scale"],
+      "related_tools": ["LangChain", "LlamaIndex", "OpenAI Embeddings"],
+      "source_references": []
+    },
+    {
+      "name": "Embedding Model",
+      "definition": "A neural network that converts text (or other data) into fixed-size dense vectors. The quality of the embedding model directly determines how well semantic search and retrieval will work.",
+      "category": "Model",
+      "difficulty": "beginner",
+      "example_use_cases": ["Generating vectors for vector databases", "Sentence similarity", "Clustering documents"],
+      "related_tools": ["SentenceTransformers", "OpenAI text-embedding-3", "Cohere Embed"],
+      "source_references": []
+    },
+    {
+      "name": "SentenceTransformers",
+      "definition": "A Python library that provides easy-to-use, pre-trained transformer models optimized for generating sentence and document embeddings. Based on BERT/RoBERTa and fine-tuned with contrastive learning.",
+      "category": "Library",
+      "difficulty": "beginner",
+      "example_use_cases": ["Generating embeddings for RAG", "Sentence similarity scoring", "Semantic clustering"],
+      "related_tools": ["HuggingFace", "FAISS", "ChromaDB"],
+      "source_references": ["Reimers & Gurevych 2019 - Sentence-BERT"]
+    },
+    {
+      "name": "Fine-tuning",
+      "definition": "Adapting a pre-trained model on a domain-specific dataset by continuing gradient-based training. Fine-tuning updates all (or most) model weights, making it expensive but highly effective for specialized tasks.",
+      "category": "Technique",
+      "difficulty": "advanced",
+      "example_use_cases": ["Domain-specific chat assistants", "Medical NLP", "Legal document analysis"],
+      "related_tools": ["HuggingFace Trainer", "Axolotl", "Unsloth"],
+      "source_references": []
+    },
+    {
+      "name": "LoRA",
+      "definition": "Low-Rank Adaptation — a parameter-efficient fine-tuning method that freezes the original model weights and injects small trainable rank-decomposition matrices into each layer. Reduces trainable parameters by 10,000x while matching full fine-tuning quality.",
+      "category": "Technique",
+      "difficulty": "advanced",
+      "example_use_cases": ["Fine-tuning LLMs on consumer GPUs", "Task-specific adaptation", "Multi-task learning"],
+      "related_tools": ["PEFT", "HuggingFace", "Unsloth"],
+      "source_references": ["Hu et al. 2021 - LoRA: Low-Rank Adaptation of Large Language Models"]
+    },
+    {
+      "name": "QLoRA",
+      "definition": "Quantized LoRA — combines 4-bit quantization of the base model with LoRA adapters. Enables fine-tuning of 65B+ parameter models on a single consumer GPU by drastically reducing memory requirements.",
+      "category": "Technique",
+      "difficulty": "expert",
+      "example_use_cases": ["Fine-tuning LLMs on single GPUs", "Consumer hardware training"],
+      "related_tools": ["bitsandbytes", "PEFT", "HuggingFace"],
+      "source_references": ["Dettmers et al. 2023 - QLoRA: Efficient Finetuning of Quantized LLMs"]
+    },
+    {
+      "name": "PEFT",
+      "definition": "Parameter-Efficient Fine-Tuning — a HuggingFace library implementing methods (LoRA, Prefix Tuning, Prompt Tuning, IA3) that fine-tune only a small fraction of model parameters, reducing compute and storage costs.",
+      "category": "Library",
+      "difficulty": "advanced",
+      "example_use_cases": ["Efficient LLM fine-tuning", "Multi-adapter serving", "Low-resource training"],
+      "related_tools": ["HuggingFace Transformers", "LoRA", "QLoRA"],
+      "source_references": []
+    },
+    {
+      "name": "RLHF",
+      "definition": "Reinforcement Learning from Human Feedback — a training paradigm where human raters compare model outputs, a reward model is trained on those preferences, and the LLM is fine-tuned using PPO to maximize the reward. Used to align GPT-4 and Claude.",
+      "category": "Technique",
+      "difficulty": "expert",
+      "example_use_cases": ["Aligning LLMs with human values", "Reducing harmful outputs", "Improving instruction following"],
+      "related_tools": ["TRL", "DeepSpeed", "OpenRLHF"],
+      "source_references": ["Ouyang et al. 2022 - InstructGPT", "Bai et al. 2022 - Constitutional AI"]
+    },
+    {
+      "name": "Instruction Tuning",
+      "definition": "Fine-tuning a pre-trained LLM on (instruction, response) pairs to teach it to follow natural language instructions. This transforms a base completion model into an assistant that answers questions and follows directions.",
+      "category": "Technique",
+      "difficulty": "intermediate",
+      "example_use_cases": ["Creating chat assistants", "Task-following models", "Multi-task learning"],
+      "related_tools": ["Alpaca", "Dolly", "Flan-T5"],
+      "source_references": ["Wei et al. 2021 - Finetuned Language Models are Zero-Shot Learners"]
+    },
+    {
+      "name": "Few-shot Learning",
+      "definition": "A prompting technique where you provide a small number of input-output examples in the prompt to demonstrate the desired task format and style to the LLM, without updating model weights.",
+      "category": "Technique",
+      "difficulty": "beginner",
+      "example_use_cases": ["Format adherence", "Sentiment classification prompts", "Translation with style"],
+      "related_tools": [],
+      "source_references": ["Brown et al. 2020 - GPT-3"]
+    },
+    {
+      "name": "Zero-shot Learning",
+      "definition": "Asking an LLM to perform a task without any examples in the prompt, relying entirely on the model's pre-trained knowledge and instruction-following capability.",
+      "category": "Technique",
+      "difficulty": "beginner",
+      "example_use_cases": ["Classification without labeled data", "Translation", "Summarization"],
+      "related_tools": [],
+      "source_references": []
+    },
+    {
+      "name": "In-context Learning",
+      "definition": "The ability of LLMs to learn new tasks or behaviors from examples provided within the prompt, without gradient updates. Includes zero-shot, one-shot, and few-shot prompting as special cases.",
+      "category": "Technique",
+      "difficulty": "intermediate",
+      "example_use_cases": ["Dynamic task adaptation", "Demonstration-based reasoning"],
+      "related_tools": [],
+      "source_references": ["Brown et al. 2020 - GPT-3"]
+    },
+    {
+      "name": "Agent",
+      "definition": "An LLM-powered system that can autonomously plan and execute multi-step tasks by using tools (web search, code execution, APIs) and making decisions in a loop until the task is complete.",
+      "category": "Architecture",
+      "difficulty": "intermediate",
+      "example_use_cases": ["Autonomous research", "Software development assistance", "Data analysis automation"],
+      "related_tools": ["LangChain Agents", "LlamaIndex Agents", "AutoGPT", "CrewAI"],
+      "source_references": []
+    },
+    {
+      "name": "Tool Use",
+      "definition": "The capability of an LLM to call external functions, APIs, or tools as part of its reasoning. The model decides when to call a tool, what arguments to pass, and incorporates the result into its answer.",
+      "category": "Technique",
+      "difficulty": "intermediate",
+      "example_use_cases": ["Web search", "Calculator", "Database queries", "Code execution"],
+      "related_tools": ["OpenAI Function Calling", "Anthropic Tool Use", "LangChain tools"],
+      "source_references": []
+    },
+    {
+      "name": "ReAct",
+      "definition": "Reasoning + Acting — a prompting framework where the LLM alternates between generating reasoning traces (Thought) and taking tool actions (Act), then observing results (Observe) in a loop. Improves reliability and interpretability of agents.",
+      "category": "Technique",
+      "difficulty": "intermediate",
+      "example_use_cases": ["Complex multi-step Q&A", "Web research agents", "Database-augmented reasoning"],
+      "related_tools": ["LangChain", "LlamaIndex"],
+      "source_references": ["Yao et al. 2022 - ReAct: Synergizing Reasoning and Acting in LLMs"]
+    },
+    {
+      "name": "Chain-of-Thought",
+      "definition": "A prompting technique that encourages LLMs to generate intermediate reasoning steps before answering. By 'thinking out loud', models perform significantly better on arithmetic, commonsense, and symbolic reasoning tasks.",
+      "category": "Technique",
+      "difficulty": "beginner",
+      "example_use_cases": ["Math problem solving", "Logical reasoning", "Complex Q&A"],
+      "related_tools": [],
+      "source_references": ["Wei et al. 2022 - Chain-of-Thought Prompting Elicits Reasoning in LLMs"]
+    },
+    {
+      "name": "Prompt Engineering",
+      "definition": "The practice of designing and optimizing text prompts to elicit desired behaviors from LLMs. Includes techniques like zero-shot prompting, few-shot examples, chain-of-thought, role-playing, and structured output formatting.",
+      "category": "Technique",
+      "difficulty": "beginner",
+      "example_use_cases": ["Getting reliable JSON output", "Improving accuracy", "Controlling tone"],
+      "related_tools": ["PromptFlow", "LangSmith", "Promptfoo"],
+      "source_references": []
+    },
+    {
+      "name": "Hallucination",
+      "definition": "When an LLM generates text that sounds plausible but is factually incorrect or entirely fabricated. A major challenge in LLM deployment, particularly for high-stakes domains.",
+      "category": "Concept",
+      "difficulty": "beginner",
+      "example_use_cases": ["Understanding LLM failure modes", "RAG motivation", "Safety evaluation"],
+      "related_tools": ["RAGAS", "TruLens"],
+      "source_references": []
+    },
+    {
+      "name": "Grounding",
+      "definition": "Connecting LLM outputs to verifiable, real-world information sources. RAG is the primary technique for grounding — the LLM's answer is anchored to retrieved documents, reducing hallucination.",
+      "category": "Technique",
+      "difficulty": "intermediate",
+      "example_use_cases": ["Factual QA systems", "Legal and medical AI", "Enterprise knowledge management"],
+      "related_tools": ["LangChain", "LlamaIndex"],
+      "source_references": []
+    },
+    {
+      "name": "LangChain",
+      "definition": "An open-source Python (and JS) framework for building applications with LLMs. Provides abstractions for chains, agents, tools, memory, and document loaders, making it easy to compose LLM-powered applications.",
+      "category": "Framework",
+      "difficulty": "intermediate",
+      "example_use_cases": ["RAG pipelines", "Multi-agent systems", "Chatbot construction"],
+      "related_tools": ["LangSmith", "LangGraph", "OpenAI", "ChromaDB"],
+      "source_references": []
+    },
+    {
+      "name": "LlamaIndex",
+      "definition": "A data framework for connecting LLMs to external data sources. Specializes in indexing, retrieval, and querying over structured and unstructured data, with advanced RAG features like query routing and sub-question decomposition.",
+      "category": "Framework",
+      "difficulty": "intermediate",
+      "example_use_cases": ["Document Q&A", "Multi-document synthesis", "Structured data querying"],
+      "related_tools": ["OpenAI", "ChromaDB", "Pinecone"],
+      "source_references": []
+    },
+    {
+      "name": "Ollama",
+      "definition": "A tool for running open-source LLMs (Llama, Mistral, Gemma, etc.) locally on your machine. Provides a simple CLI and REST API, making local inference accessible without cloud dependencies.",
+      "category": "Tool",
+      "difficulty": "beginner",
+      "example_use_cases": ["Local LLM inference", "Privacy-preserving AI", "Offline AI applications"],
+      "related_tools": ["Llama 3", "Mistral", "llama.cpp"],
+      "source_references": []
+    },
+    {
+      "name": "Neo4j",
+      "definition": "The world's leading graph database, using a native graph storage engine with a Cypher query language. Ideal for knowledge graphs, recommendation engines, and fraud detection where relationships are first-class citizens.",
+      "category": "Infrastructure",
+      "difficulty": "intermediate",
+      "example_use_cases": ["Knowledge graphs", "Fraud detection", "Recommendation systems", "GraphRAG"],
+      "related_tools": ["Cypher", "APOC", "GDS (Graph Data Science)"],
+      "source_references": []
+    },
+    {
+      "name": "Knowledge Graph",
+      "definition": "A structured representation of knowledge as a network of entities (nodes) and relationships (edges). Knowledge graphs encode semantic relationships between concepts, enabling structured reasoning and multi-hop query answering.",
+      "category": "Architecture",
+      "difficulty": "intermediate",
+      "example_use_cases": ["Entity relationship discovery", "Question answering over structured data", "GraphRAG knowledge base"],
+      "related_tools": ["Neo4j", "Wikidata", "DBpedia", "NetworkX"],
+      "source_references": []
+    },
+    {
+      "name": "Faithfulness",
+      "definition": "A RAG evaluation metric measuring whether the generated answer is factually consistent with the retrieved context. High faithfulness means the LLM didn't add information beyond what was retrieved.",
+      "category": "Evaluation",
+      "difficulty": "intermediate",
+      "example_use_cases": ["RAG quality assessment", "Hallucination detection", "Safety auditing"],
+      "related_tools": ["RAGAS", "TruLens"],
+      "source_references": []
+    },
+    {
+      "name": "RAGAS",
+      "definition": "RAG Assessment — an evaluation framework for measuring RAG pipeline quality across multiple dimensions: faithfulness, answer relevance, context precision, and context recall. Uses LLM-as-judge approach.",
+      "category": "Evaluation",
+      "difficulty": "intermediate",
+      "example_use_cases": ["RAG system benchmarking", "Automated QA testing", "Continuous evaluation pipelines"],
+      "related_tools": ["LangChain", "LlamaIndex", "OpenAI"],
+      "source_references": ["Es et al. 2023 - RAGAS: Automated Evaluation of Retrieval Augmented Generation"]
+    },
+    {
+      "name": "Cross-encoder",
+      "definition": "A model architecture that jointly encodes a query and a document together (as a single input) to produce a relevance score. More accurate than bi-encoders but slower — ideal as a reranker in a two-stage retrieval pipeline.",
+      "category": "Model",
+      "difficulty": "intermediate",
+      "example_use_cases": ["Reranking retrieved documents", "Sentence pair classification", "Relevance scoring"],
+      "related_tools": ["sentence-transformers cross-encoders", "Cohere Rerank"],
+      "source_references": []
+    },
+    {
+      "name": "Bi-encoder",
+      "definition": "A model architecture that encodes query and document independently into vectors, then computes similarity via dot product or cosine distance. Fast for large-scale retrieval but less precise than cross-encoders.",
+      "category": "Model",
+      "difficulty": "intermediate",
+      "example_use_cases": ["Dense retrieval", "ANN search", "First-stage retrieval"],
+      "related_tools": ["SentenceTransformers", "FAISS", "DPR"],
+      "source_references": []
+    },
+    {
+      "name": "KV Cache",
+      "definition": "A technique where key-value attention matrices from previous tokens are cached during generation, avoiding redundant computation. Enables efficient autoregressive generation but requires significant GPU memory.",
+      "category": "Technique",
+      "difficulty": "expert",
+      "example_use_cases": ["Speeding up inference", "Long-context generation", "Batch inference optimization"],
+      "related_tools": ["vLLM", "TensorRT-LLM"],
+      "source_references": []
+    }
+  ],
+  "relationships": [
+    {"source": "Large Language Model", "rel_type": "IS_A", "target": "Transformer"},
+    {"source": "BERT", "rel_type": "IS_A", "target": "Transformer"},
+    {"source": "GPT", "rel_type": "IS_A", "target": "Transformer"},
+    {"source": "Transformer", "rel_type": "REQUIRES", "target": "Attention Mechanism"},
+    {"source": "Attention Mechanism", "rel_type": "PART_OF", "target": "Transformer"},
+    {"source": "Token", "rel_type": "PART_OF", "target": "Tokenization"},
+    {"source": "Tokenization", "rel_type": "REQUIRES", "target": "Token"},
+    {"source": "Large Language Model", "rel_type": "REQUIRES", "target": "Tokenization"},
+    {"source": "Context Window", "rel_type": "PART_OF", "target": "Large Language Model"},
+    {"source": "Embedding", "rel_type": "REQUIRES", "target": "Transformer"},
+    {"source": "Embedding Model", "rel_type": "IS_A", "target": "Transformer"},
+    {"source": "Embedding Model", "rel_type": "BUILT_WITH", "target": "BERT"},
+    {"source": "SentenceTransformers", "rel_type": "BUILT_WITH", "target": "BERT"},
+    {"source": "SentenceTransformers", "rel_type": "IS_A", "target": "Embedding Model"},
+    {"source": "Retrieval-Augmented Generation", "rel_type": "REQUIRES", "target": "Large Language Model"},
+    {"source": "Retrieval-Augmented Generation", "rel_type": "REQUIRES", "target": "Vector Database"},
+    {"source": "Retrieval-Augmented Generation", "rel_type": "REQUIRES", "target": "Embedding Model"},
+    {"source": "Retrieval-Augmented Generation", "rel_type": "REQUIRES", "target": "Chunking"},
+    {"source": "Retrieval-Augmented Generation", "rel_type": "REQUIRES", "target": "Document Loader"},
+    {"source": "Retrieval-Augmented Generation", "rel_type": "USED_IN", "target": "Grounding"},
+    {"source": "GraphRAG", "rel_type": "VARIANT_OF", "target": "Retrieval-Augmented Generation"},
+    {"source": "GraphRAG", "rel_type": "REQUIRES", "target": "Knowledge Graph"},
+    {"source": "GraphRAG", "rel_type": "REQUIRES", "target": "Large Language Model"},
+    {"source": "GraphRAG", "rel_type": "BUILT_WITH", "target": "Neo4j"},
+    {"source": "Knowledge Graph", "rel_type": "BUILT_WITH", "target": "Neo4j"},
+    {"source": "Semantic Search", "rel_type": "REQUIRES", "target": "Embedding"},
+    {"source": "Semantic Search", "rel_type": "REQUIRES", "target": "Vector Database"},
+    {"source": "Dense Retrieval", "rel_type": "IS_A", "target": "Semantic Search"},
+    {"source": "Dense Retrieval", "rel_type": "REQUIRES", "target": "Bi-encoder"},
+    {"source": "Dense Retrieval", "rel_type": "REQUIRES", "target": "Vector Database"},
+    {"source": "Sparse Retrieval", "rel_type": "ALTERNATIVE_TO", "target": "Dense Retrieval"},
+    {"source": "BM25", "rel_type": "IS_A", "target": "Sparse Retrieval"},
+    {"source": "Hybrid Search", "rel_type": "REQUIRES", "target": "Dense Retrieval"},
+    {"source": "Hybrid Search", "rel_type": "REQUIRES", "target": "Sparse Retrieval"},
+    {"source": "HyDE", "rel_type": "EXTENDS", "target": "Dense Retrieval"},
+    {"source": "HyDE", "rel_type": "REQUIRES", "target": "Large Language Model"},
+    {"source": "Reranker", "rel_type": "BUILT_WITH", "target": "Cross-encoder"},
+    {"source": "Reranker", "rel_type": "USED_IN", "target": "Retrieval-Augmented Generation"},
+    {"source": "Cross-encoder", "rel_type": "ALTERNATIVE_TO", "target": "Bi-encoder"},
+    {"source": "FAISS", "rel_type": "IS_A", "target": "Vector Database"},
+    {"source": "ChromaDB", "rel_type": "IS_A", "target": "Vector Database"},
+    {"source": "Pinecone", "rel_type": "IS_A", "target": "Vector Database"},
+    {"source": "FAISS", "rel_type": "SIMILAR_TO", "target": "ChromaDB"},
+    {"source": "Multi-hop Reasoning", "rel_type": "REQUIRES", "target": "Knowledge Graph"},
+    {"source": "Multi-hop Reasoning", "rel_type": "USED_IN", "target": "GraphRAG"},
+    {"source": "Fine-tuning", "rel_type": "REQUIRES", "target": "Large Language Model"},
+    {"source": "Fine-tuning", "rel_type": "ALTERNATIVE_TO", "target": "Retrieval-Augmented Generation"},
+    {"source": "LoRA", "rel_type": "IS_A", "target": "Fine-tuning"},
+    {"source": "LoRA", "rel_type": "ALTERNATIVE_TO", "target": "Fine-tuning"},
+    {"source": "QLoRA", "rel_type": "EXTENDS", "target": "LoRA"},
+    {"source": "QLoRA", "rel_type": "VARIANT_OF", "target": "LoRA"},
+    {"source": "PEFT", "rel_type": "BUILT_WITH", "target": "LoRA"},
+    {"source": "PEFT", "rel_type": "BUILT_WITH", "target": "QLoRA"},
+    {"source": "RLHF", "rel_type": "REQUIRES", "target": "Fine-tuning"},
+    {"source": "RLHF", "rel_type": "REQUIRES", "target": "Large Language Model"},
+    {"source": "Instruction Tuning", "rel_type": "IS_A", "target": "Fine-tuning"},
+    {"source": "RLHF", "rel_type": "EXTENDS", "target": "Instruction Tuning"},
+    {"source": "Agent", "rel_type": "REQUIRES", "target": "Large Language Model"},
+    {"source": "Agent", "rel_type": "REQUIRES", "target": "Tool Use"},
+    {"source": "ReAct", "rel_type": "EXTENDS", "target": "Chain-of-Thought"},
+    {"source": "ReAct", "rel_type": "IS_A", "target": "Agent"},
+    {"source": "ReAct", "rel_type": "REQUIRES", "target": "Tool Use"},
+    {"source": "Chain-of-Thought", "rel_type": "IS_A", "target": "Prompt Engineering"},
+    {"source": "Few-shot Learning", "rel_type": "IS_A", "target": "In-context Learning"},
+    {"source": "Zero-shot Learning", "rel_type": "IS_A", "target": "In-context Learning"},
+    {"source": "Few-shot Learning", "rel_type": "IS_A", "target": "Prompt Engineering"},
+    {"source": "Hallucination", "rel_type": "USED_IN", "target": "Grounding"},
+    {"source": "Grounding", "rel_type": "REQUIRES", "target": "Retrieval-Augmented Generation"},
+    {"source": "LangChain", "rel_type": "BUILT_WITH", "target": "Large Language Model"},
+    {"source": "LangChain", "rel_type": "BUILT_WITH", "target": "Vector Database"},
+    {"source": "LlamaIndex", "rel_type": "BUILT_WITH", "target": "Large Language Model"},
+    {"source": "LlamaIndex", "rel_type": "BUILT_WITH", "target": "Vector Database"},
+    {"source": "LangChain", "rel_type": "ALTERNATIVE_TO", "target": "LlamaIndex"},
+    {"source": "RAGAS", "rel_type": "USED_IN", "target": "Retrieval-Augmented Generation"},
+    {"source": "Faithfulness", "rel_type": "PART_OF", "target": "RAGAS"},
+    {"source": "KV Cache", "rel_type": "PART_OF", "target": "Large Language Model"},
+    {"source": "KV Cache", "rel_type": "REQUIRES", "target": "Transformer"},
+    {"source": "Ollama", "rel_type": "USED_IN", "target": "Large Language Model"}
+  ]
+}

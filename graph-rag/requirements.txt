@@ -1,0 +1,33 @@
+# Core — required for all features
+networkx>=2.6          # 2.x supports Python 3.8; 3.x requires Python 3.9+
+python-dotenv>=0.21.0
+tqdm>=4.64.0
+numpy>=1.23.0
+
+# API
+fastapi>=0.95.0
+uvicorn[standard]>=0.20.0
+pydantic>=2.0.0
+
+# Dashboard
+streamlit>=1.25.0
+pyvis>=0.3.1
+plotly>=5.13.0
+
+# Optional — graph algorithms (community detection)
+python-louvain>=0.16
+
+# Optional — vector search (semantic similarity)
+# Uncomment to enable ChromaDB + embeddings:
+# chromadb>=0.4.0
+# sentence-transformers>=2.2.0
+
+# Optional — LLM natural language answers (local, free)
+# Requires: brew install ollama && ollama pull llama3 && ollama serve
+# Uncomment to enable:
+# ollama>=0.1.0
+
+# Optional — Neo4j backend (instead of NetworkX)
+# Requires a running Neo4j instance + GRAPH_BACKEND=neo4j in .env
+# Uncomment to enable:
+# neo4j>=5.0.0
