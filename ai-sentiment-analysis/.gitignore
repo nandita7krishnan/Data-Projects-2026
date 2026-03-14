@@ -1,0 +1,13 @@
+.env
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+data/raw/
+data/processed/
+data/plots/
+data/*.db
+.venv/
+venv/
+*.egg-info/
+.ipynb_checkpoints/
