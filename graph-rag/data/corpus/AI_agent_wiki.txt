@@ -1,0 +1,5 @@
+# AI agent
+
+Source: Wikipedia
+
+In the context of generative artificial intelligence, AI agents are a class of intelligent agents distinguished by their ability to operate autonomously in complex environments. Agentic AI tools prioritize decision-making over content creation and do not require continuous oversight.

@@ -1,0 +1,8 @@
+# BM25
+
+Source: Wikipedia
+
+BM25 may refer to:BM-25, a Soviet multiple rocket launcher
+BM-25 Musudan, a North Korean intermediate-range ballistic missile thought to be designed in the 1960s and made in the 1970s, it was seen in the late 1980s by photographers
+Okapi BM25, a ranking function in information retrieval
+

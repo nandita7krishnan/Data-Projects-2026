@@ -1,0 +1,18 @@
+# arXiv Papers: GPT
+
+Source: arXiv
+
+
+## Paper 1: Sim-GPT: Text Similarity via GPT Annotated Data
+
+Due to the lack of a large collection of high-quality labeled sentence pairs with textual similarity scores, existing approaches for Semantic Textual Similarity (STS) mostly rely on unsupervised techniques or training signals that are only partially correlated with textual similarity, e.g., NLI-based datasets. To tackle this issue, in this paper, we propose the strategy of measuring text similarity via GPT annotated data (Sim-GPT for short). The core idea of Sim-GPT is to generate data with STS labels using GPT-4, based on which an STS model is trained. Sim-GPT framework utilizes LLMs to provide a substantial amount of reliable annotated data filling the gap of the lack of training signals for STS. Sim-GPT is trained on a one-time generated dataset using BERT or RoBERTa as the backbone, which offers long-term savings in cost and speed compared to repeatedly invoking LLMs for each sentence pair. Trained on the examples from GPT-4 (371K), Sim-GPT yields SOTA performances on the widely-used seven STS benchmarks: +0.99 over supervised-SimCSE, and +0.42 over the current SOTA PromCSE model. To encourage further advancements of the field, we release both models and the 371K annotated examples from GPT-4. Code, models and annotated data are available at: https://github.com/ShuheWang1998/Sim-GPT.
+
+
+## Paper 2: Adapting GPT, GPT-2 and BERT Language Models for Speech Recognition
+
+Language models (LMs) pre-trained on massive amounts of text, in particular bidirectional encoder representations from Transformers (BERT), generative pre-training (GPT), and GPT-2, have become a key technology for many natural language processing tasks. In this paper, we present results using fine-tuned GPT, GPT-2, and their combination for automatic speech recognition (ASR). Unlike unidirectional LM GPT and GPT-2, BERT is bidirectional whose direct product of the output probabilities is no longer a valid language prior probability. A conversion method is proposed to compute the correct language prior probability based on bidirectional LM outputs in a mathematically exact way. Experimental results on the widely used AMI and Switchboard ASR tasks showed that the combination of the fine-tuned GPT and GPT-2 outperformed the combination of three neural LMs with different architectures trained from scratch on the in-domain text by up to a 12% relative word error rate reduction (WERR). Furthermore, on the AMI corpus, the proposed conversion for language prior probabilities enables BERT to obtain an extra 3% relative WERR, and the combination of BERT, GPT and GPT-2 results in further improvements.
+
+
+## Paper 3: GPT in Sheep's Clothing: The Risk of Customized GPTs
+
+In November 2023, OpenAI introduced a new service allowing users to create custom versions of ChatGPT (GPTs) by using specific instructions and knowledge to guide the model's behavior. We aim to raise awareness of the fact that GPTs can be used maliciously, posing privacy and security risks to their users.

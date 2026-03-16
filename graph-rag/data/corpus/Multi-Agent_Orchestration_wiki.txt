@@ -1,0 +1,5 @@
+# Multi-agent system
+
+Source: Wikipedia
+
+A multi-agent system (MAS) or "self-organized system" is a computational system composed of multiple interacting intelligent agents. Multi-agent systems can solve problems that are difficult or impossible for an individual agent or a monolithic system to solve. Intelligence may include methodic, functional, procedural approaches, algorithmic search or reinforcement learning. With advancements in large language models (LLMs), LLM-based multi-agent systems have emerged as a new area of research, enabling more sophisticated interactions and coordination among agents.

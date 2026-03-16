@@ -1,0 +1,5 @@
+# Context window
+
+Source: Wikipedia
+
+The context window is the maximum length of input a large language model (LLM) can consider at once. In the development and maturation of LLM technology expanding the context window has been a major goal. The length of a context window is measured in tokens. In 2025, the Gemini LLM had the largest context window with two million tokens.

@@ -1,0 +1,5 @@
+# Synthetic data
+
+Source: Wikipedia
+
+Synthetic data are artificially generated data not produced by real-world events. Typically created using algorithms, synthetic data can be deployed to validate mathematical models and to train machine learning models.

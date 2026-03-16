@@ -1,0 +1,5 @@
+# Natural language generation
+
+Source: Wikipedia
+
+Natural language generation (NLG) is a software process that produces natural language output. A widely cited survey of NLG methods describes NLG as "the subfield of artificial intelligence and computational linguistics that is concerned with the construction of computer systems that can produce understandable texts in English or other human languages from some underlying non-linguistic representation of information".

@@ -1,0 +1,18 @@
+# arXiv Papers: Hallucination
+
+Source: arXiv
+
+
+## Paper 1: Hallucination Detection and Hallucination Mitigation: An Investigation
+
+Large language models (LLMs), including ChatGPT, Bard, and Llama, have achieved remarkable successes over the last two years in a range of different applications. In spite of these successes, there exist concerns that limit the wide application of LLMs. A key problem is the problem of hallucination. Hallucination refers to the fact that in addition to correct responses, LLMs can also generate seemingly correct but factually incorrect responses. This report aims to present a comprehensive review of the current literature on both hallucination detection and hallucination mitigation. We hope that this report can serve as a good reference for both engineers and researchers who are interested in LLMs and applying them to real world tasks.
+
+
+## Paper 2: Code Hallucination
+
+Generative models such as large language models are extensively used as code copilots and for whole program generation. However, the programs they generate often have questionable correctness, authenticity and reliability in terms of integration as they might not follow the user requirements, provide incorrect and/or nonsensical outputs, or even contain semantic/syntactic errors - overall known as LLM hallucination. In this work, we present several types of code hallucination. We have generated such hallucinated code manually using large language models. We also present a technique - HallTrigger, in order to demonstrate efficient ways of generating arbitrary code hallucination. Our method leverages 3 different dynamic attributes of LLMs to craft prompts that can successfully trigger hallucinations from models without the need to access model architecture or parameters. Results from popular blackbox models suggest that HallTrigger is indeed effective and the pervasive LLM hallucination have sheer impact on software development.
+
+
+## Paper 3: HAD: HAllucination Detection Language Models Based on a Comprehensive Hallucination Taxonomy
+
+The increasing reliance on natural language generation (NLG) models, particularly large language models, has raised concerns about the reliability and accuracy of their outputs. A key challenge is hallucination, where models produce plausible but incorrect information. As a result, hallucination detection has become a critical task. In this work, we introduce a comprehensive hallucination taxonomy with 11 categories across various NLG tasks and propose the HAllucination Detection (HAD) models https://github.com/pku0xff/HAD, which integrate hallucination detection, span-level identification, and correction into a single inference process. Trained on an elaborate synthetic dataset of about 90K samples, our HAD models are versatile and can be applied to various NLG tasks. We also carefully annotate a test set for hallucination detection, called HADTest, which contains 2,248 samples. Evaluations on in-domain and out-of-domain test sets show that our HAD models generally outperform the existing baselines, achieving state-of-the-art results on HaluEval, FactCHD, and FaithBench, confirming their robustness and versatility.

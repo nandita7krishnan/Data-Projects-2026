@@ -1,0 +1,5 @@
+# Red team
+
+Source: Wikipedia
+
+A red team is a group that simulates an adversary, attempts a physical or digital intrusion against an organization at the direction of that organization, then reports back so that the organization can improve their defenses. Red teams work for the organization or are hired by the organization. Their work is legal, but it can surprise some employees who may not know that red teaming is occurring, or who may be deceived by the red team. Some definitions of red team are broader, and they include any group within an organization that is directed to think outside the box and look at alternative scenarios that are considered less plausible. This directive can be an important defense against false assumptions and groupthink. The term red teaming originated in the 1960s in the United States.

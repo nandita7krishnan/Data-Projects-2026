@@ -1,0 +1,17 @@
+# Slop
+
+Category: Concept | Difficulty: beginner
+
+Source: Seed knowledge base
+
+
+## Definition
+
+A colloquial term for low-quality, high-volume AI-generated content that lacks originality, accuracy, or genuine value — produced by AI models used indiscriminately without human curation. A growing concern in search quality, social media, and publishing.
+
+## Example Use Cases
+
+- Identifying AI content farms
+- Content quality filtering
+- Understanding LLM misuse
+- AI literacy discussions

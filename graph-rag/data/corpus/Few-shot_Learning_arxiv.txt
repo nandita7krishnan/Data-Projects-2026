@@ -1,0 +1,18 @@
+# arXiv Papers: Few-shot Learning
+
+Source: arXiv
+
+
+## Paper 1: Large Margin Few-Shot Learning
+
+The key issue of few-shot learning is learning to generalize. This paper proposes a large margin principle to improve the generalization capacity of metric based methods for few-shot learning. To realize it, we develop a unified framework to learn a more discriminative metric space by augmenting the classification loss function with a large margin distance loss function for training. Extensive experiments on two state-of-the-art few-shot learning methods, graph neural networks and prototypical networks, show that our method can improve the performance of existing models substantially with very little computational overhead, demonstrating the effectiveness of the large margin principle and the potential of our method.
+
+
+## Paper 2: Aspect-Based Few-Shot Learning
+
+We generalize the formulation of few-shot learning by introducing the concept of an aspect. In the traditional formulation of few-shot learning, there is an underlying assumption that a single "true" label defines the content of each data point. This label serves as a basis for the comparison between the query object and the objects in the support set. However, when a human expert is asked to execute the same task without a predefined set of labels, they typically consider the rest of the data points in the support set as context. This context specifies the level of abstraction and the aspect from which the comparison can be made. In this work, we introduce a novel architecture and training procedure that develops a context given the query and support set and implements aspect-based few-shot learning that is not limited to a predetermined set of classes. We demonstrate that our method is capable of forming and using an aspect for few-shot learning on the Geometric Shapes and Sprites dataset. The results validate the feasibility of our approach compared to traditional few-shot learning.
+
+
+## Paper 3: Defensive Few-shot Learning
+
+This paper investigates a new challenging problem called defensive few-shot learning in order to learn a robust few-shot model against adversarial attacks. Simply applying the existing adversarial defense methods to few-shot learning cannot effectively solve this problem. This is because the commonly assumed sample-level distribution consistency between the training and test sets can no longer be met in the few-shot setting. To address this situation, we develop a general defensive few-shot learning (DFSL) framework to answer the following two key questions: (1) how to transfer adversarial defense knowledge from one sample distribution to another? (2) how to narrow the distribution gap between clean and adversarial examples under the few-shot setting? To answer the first question, we propose an episode-based adversarial training mechanism by assuming a task-level distribution consistency to better transfer the adversarial defense knowledge. As for the second question, within each few-shot task, we design two kinds of distribution consistency criteria to narrow the distribution gap between clean and adversarial examples from the feature-wise and prediction-wise perspectives, respectively. Extensive experiments demonstrate that the proposed framework can effectively make the existing few-shot models robust against adversarial attacks. Code is available at https://github.com/WenbinLee/DefensiveFSL.git.

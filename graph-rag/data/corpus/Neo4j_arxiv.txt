@@ -1,0 +1,18 @@
+# arXiv Papers: Neo4j
+
+Source: arXiv
+
+
+## Paper 1: GLL-based Context-Free Path Querying for Neo4j
+
+We propose GLL-based context-free path querying algorithm which handles queries in Extended Backus-Naur Form (EBNF) using Recursive State Machines (RSM). Utilization of EBNF allows one to combine traditional regular expressions and mutually recursive patterns in constraints natively. The proposed algorithm solves both the reachability-only and the all-paths problems for the all-pairs and the multiple sources cases. The evaluation on realworld graphs demonstrates that utilization of RSMs increases performance of query evaluation. Being implemented as a stored procedure for Neo4j, our solution demonstrates better performance than a similar solution for RedisGraph. Performance of our solution of regular path queries is comparable with performance of native Neo4j solution, and in some cases our solution requires significantly less memory.
+
+
+## Paper 2: Data2Neo - A Tool for Complex Neo4j Data Integration
+
+This paper introduces Data2Neo, an open-source Python library for converting relational data into knowledge graphs stored in Neo4j databases. With extensive customization options and support for continuous online data integration from various data sources, Data2Neo is designed to be user-friendly, efficient, and scalable to large datasets. The tool significantly lowers the barrier to entry for creating and using knowledge graphs, making this increasingly popular form of data representation accessible to a wider audience. The code is available at https://github.com/jkminder/data2neo .
+
+
+## Paper 3: Leveraging Neo4j and deep learning for traffic congestion simulation &amp; optimization
+
+Traffic congestion has been a major challenge in many urban road networks. Extensive research studies have been conducted to highlight traffic-related congestion and address the issue using data-driven approaches. Currently, most traffic congestion analyses are done using simulation software that offers limited insight due to the limitations in the tools and utilities being used to render various traffic congestion scenarios. All that impacts the formulation of custom business problems which vary from place to place and country to country. By exploiting the power of the knowledge graph, we model a traffic congestion problem into the Neo4j graph and then use the load balancing, optimization algorithm to identify congestion-free road networks. We also show how traffic propagates backward in case of congestion or accident scenarios and its overall impact on other segments of the roads. We also train a sequential RNN-LSTM (Long Short-Term Memory) deep learning model on the real-time traffic data to assess the accuracy of simulation results based on a road-specific congestion. Our results show that graph-based traffic simulation, supplemented by AI ML-based traffic prediction can be more effective in estimating the congestion level in a road network.

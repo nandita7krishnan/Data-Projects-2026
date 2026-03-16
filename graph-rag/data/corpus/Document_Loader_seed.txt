@@ -1,0 +1,20 @@
+# Document Loader
+
+Category: Tool | Difficulty: beginner
+
+Source: Seed knowledge base
+
+
+## Definition
+
+A component that reads documents from various sources (PDF, web pages, databases, APIs) and converts them into a standard format for downstream processing in a RAG pipeline.
+
+## Example Use Cases
+
+- Ingesting PDFs
+- Scraping web pages
+- Reading databases
+
+## Related Tools
+
+LangChain loaders, LlamaIndex readers, Unstructured.io

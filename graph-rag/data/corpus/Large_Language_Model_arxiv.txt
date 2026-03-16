@@ -1,0 +1,18 @@
+# arXiv Papers: Large Language Model
+
+Source: arXiv
+
+
+## Paper 1: LaVy: Vietnamese Multimodal Large Language Model
+
+Large Language Models (LLMs) and Multimodal Large language models (MLLMs) have taken the world by storm with impressive abilities in complex reasoning and linguistic comprehension. Meanwhile there are plethora of works related to Vietnamese Large Language Models, the lack of high-quality resources in multimodality limits the progress of Vietnamese MLLMs. In this paper, we pioneer in address this by introducing LaVy, a state-of-the-art Vietnamese MLLM, and we also introduce LaVy-Bench benchmark designated for evaluating MLLMs's understanding on Vietnamese visual language tasks. Our project is public at https://github.com/baochi0212/LaVy
+
+
+## Paper 2: Large Language Models are Biased Because They Are Large Language Models
+
+This position paper's primary goal is to provoke thoughtful discussion about the relationship between bias and fundamental properties of large language models. I do this by seeking to convince the reader that harmful biases are an inevitable consequence arising from the design of any large language model as LLMs are currently formulated. To the extent that this is true, it suggests that the problem of harmful bias cannot be properly addressed without a serious reconsideration of AI driven by LLMs, going back to the foundational assumptions underlying their design.
+
+
+## Paper 3: Algorithm Evolution Using Large Language Model
+
+Optimization can be found in many real-life applications. Designing an effective algorithm for a specific optimization problem typically requires a tedious amount of effort from human experts with domain knowledge and algorithm design skills. In this paper, we propose a novel approach called Algorithm Evolution using Large Language Model (AEL). It utilizes a large language model (LLM) to automatically generate optimization algorithms via an evolutionary framework. AEL does algorithm-level evolution without model training. Human effort and requirements for domain knowledge can be significantly reduced. We take constructive methods for the salesman traveling problem as a test example, we show that the constructive algorithm obtained by AEL outperforms simple hand-crafted and LLM-generated heuristics. Compared with other domain deep learning model-based algorithms, these methods exhibit excellent scalability across different problem sizes. AEL is also very different from previous attempts that utilize LLMs as search operators in algorithms.

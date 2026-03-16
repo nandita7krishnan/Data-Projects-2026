@@ -1,0 +1,5 @@
+# Knowledge Graph
+
+Source: Wikipedia
+
+A knowledge graph is a knowledge base that uses a graph-structured data model.

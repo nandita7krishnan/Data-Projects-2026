@@ -1,0 +1,5 @@
+# Zero-shot learning
+
+Source: Wikipedia
+
+Zero-shot learning (ZSL) is a problem setup in deep learning where, at test time, a learner observes samples from classes which were not observed during training, and needs to predict the class that they belong to. The name is a play on words based on the earlier concept of one-shot learning, in which classification can be learned from only one, or a few, examples.

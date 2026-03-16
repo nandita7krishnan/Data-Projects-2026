@@ -1,0 +1,5 @@
+# Generative model
+
+Source: Wikipedia
+
+Generative models are a class of models frequently used for classification. In machine learning, it typically models the joint distribution of inputs and outputs, such as P(X,Y), or it models how inputs are distributed within each class, such as P(X∣Y) together with a class prior P(Y). Because it describes a full data-generating process, a generative model can be used to draw new samples that resemble the observed data. Generative models are used for density estimation, simulation, and learning with missing or partially labeled data. In classification, they can predict labels by combining P(X∣Y) and P(Y) and applying Bayes’ rule. Generative models are often contrasted with discriminative models, which focus on predicting outputs from inputs directly.

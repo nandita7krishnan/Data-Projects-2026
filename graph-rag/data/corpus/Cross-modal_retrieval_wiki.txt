@@ -1,0 +1,6 @@
+# Cross-modal retrieval
+
+Source: Wikipedia
+
+Cross-modal retrieval is a subfield of information retrieval that enables users to search for and retrieve information across different data modalities, such as text, images, audio, and video.
+Unlike traditional information retrieval systems that match queries and documents within the same modality, cross-modal retrieval bridges different types of media to facilitate more flexible information access.

@@ -1,0 +1,18 @@
+# arXiv Papers: Knowledge Graph
+
+Source: arXiv
+
+
+## Paper 1: Universal Knowledge Graph Embeddings
+
+A variety of knowledge graph embedding approaches have been developed. Most of them obtain embeddings by learning the structure of the knowledge graph within a link prediction setting. As a result, the embeddings reflect only the structure of a single knowledge graph, and embeddings for different knowledge graphs are not aligned, e.g., they cannot be used to find similar entities across knowledge graphs via nearest neighbor search. However, knowledge graph embedding applications such as entity disambiguation require a more global representation, i.e., a representation that is valid across multiple sources. We propose to learn universal knowledge graph embeddings from large-scale interlinked knowledge sources. To this end, we fuse large knowledge graphs based on the owl:sameAs relation such that every entity is represented by a unique identity. We instantiate our idea by computing universal embeddings based on DBpedia and Wikidata yielding embeddings for about 180 million entities, 15 thousand relations, and 1.2 billion triples. We believe our computed embeddings will support the emerging field of graph foundation models. Moreover, we develop a convenient API to provide embeddings as a service. Experiments on link prediction suggest that universal knowledge graph embeddings encode better semantics compared to embeddings computed on a single knowledge graph. For reproducibility purposes, we provide our source code and datasets open access.
+
+
+## Paper 2: Assisted Knowledge Graph Authoring: Human-Supervised Knowledge Graph Construction from Natural Language
+
+Encyclopedic knowledge graphs, such as Wikidata, host an extensive repository of millions of knowledge statements. However, domain-specific knowledge from fields such as history, physics, or medicine is significantly underrepresented in those graphs. Although few domain-specific knowledge graphs exist (e.g., Pubmed for medicine), developing specialized retrieval applications for many domains still requires constructing knowledge graphs from scratch. To facilitate knowledge graph construction, we introduce WAKA: a Web application that allows domain experts to create knowledge graphs through the medium with which they are most familiar: natural language.
+
+
+## Paper 3: Question-guided Knowledge Graph Re-scoring and Injection for Knowledge Graph Question Answering
+
+Knowledge graph question answering (KGQA) involves answering natural language questions by leveraging structured information stored in a knowledge graph. Typically, KGQA initially retrieve a targeted subgraph from a large-scale knowledge graph, which serves as the basis for reasoning models to address queries. However, the retrieved subgraph inevitably brings distraction information for knowledge utilization, impeding the model's ability to perform accurate reasoning. To address this issue, we propose a Question-guided Knowledge Graph Re-scoring method (Q-KGR) to eliminate noisy pathways for the input question, thereby focusing specifically on pertinent factual knowledge. Moreover, we introduce Knowformer, a parameter-efficient method for injecting the re-scored knowledge graph into large language models to enhance their ability to perform factual reasoning. Extensive experiments on multiple KGQA benchmarks demonstrate the superiority of our method over existing systems.

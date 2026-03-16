@@ -1,0 +1,11 @@
+# Tokenization
+
+Source: Wikipedia
+
+Tokenization may refer to:Tokenization in language processing
+Tokenization in large language models
+Tokenization in search engine indexing
+Tokenization 
+Asset tokenization in finance
+Word segmentation
+A procedure during the Transformer architecture

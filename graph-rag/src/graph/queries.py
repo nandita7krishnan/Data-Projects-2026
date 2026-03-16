@@ -31,12 +31,12 @@ def get_dependencies(client: "GraphClient", concept_name: str) -> GraphSubgraph:
 
 def get_similar_concepts(client: "GraphClient", concept_name: str) -> list[ConceptNode]:
     """
-    Return concepts that are SIMILAR_TO or ALTERNATIVE_TO `concept_name`.
+    Return concepts that are SIMILAR_TO, ALTERNATIVE_TO, or COMPLEMENTARY_TO `concept_name`.
     """
     subgraph = client.get_neighbors(
         concept_name,
         hops=1,
-        rel_types=["SIMILAR_TO", "ALTERNATIVE_TO", "VARIANT_OF"],
+        rel_types=["SIMILAR_TO", "ALTERNATIVE_TO", "COMPLEMENTARY_TO", "VARIANT_OF"],
     )
     return [n for n in subgraph.nodes if n.name != concept_name]
 

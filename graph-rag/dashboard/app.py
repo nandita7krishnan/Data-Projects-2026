@@ -189,7 +189,7 @@ with tab_search:
         cols = st.columns(4)
         for i, concept in enumerate(filtered_sorted[:40]):
             color = CATEGORY_COLORS.get(concept.category, "#888")
-            if cols[i % 4].button(concept.name, key=f"browse_{concept.name}"):
+            if cols[i % 4].button(concept.name, key=f"browse_{i}_{concept.name}"):
                 query = concept.name
 
     if query:

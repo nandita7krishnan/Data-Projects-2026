@@ -1,0 +1,20 @@
+# Grounding
+
+Category: Technique | Difficulty: intermediate
+
+Source: Seed knowledge base
+
+
+## Definition
+
+Connecting LLM outputs to verifiable, real-world information sources. RAG is the primary technique for grounding — the LLM's answer is anchored to retrieved documents, reducing hallucination.
+
+## Example Use Cases
+
+- Factual QA systems
+- Legal and medical AI
+- Enterprise knowledge management
+
+## Related Tools
+
+LangChain, LlamaIndex

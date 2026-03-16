@@ -1,0 +1,18 @@
+# arXiv Papers: BM25
+
+Source: arXiv
+
+
+## Paper 1: Integrating the Probabilistic Models BM25/BM25F into Lucene
+
+This document describes the BM25 and BM25F implementation using the Lucene Java Framework. Both models have stood out at TREC by their performance and are considered as state-of-the-art in the IR community. BM25 is applied to retrieval on plain text documents, that is for documents that do not contain fields, while BM25F is applied to documents with structure.
+
+
+## Paper 2: BM25 Query Augmentation Learned End-to-End
+
+Given BM25's enduring competitiveness as an information retrieval baseline, we investigate to what extent it can be even further improved by augmenting and re-weighting its sparse query-vector representation. We propose an approach to learning an augmentation and a re-weighting end-to-end, and we find that our approach improves performance over BM25 while retaining its speed. We furthermore find that the learned augmentations and re-weightings transfer well to unseen datasets.
+
+
+## Paper 3: BM25S: Orders of magnitude faster lexical search via eager sparse scoring
+
+We introduce BM25S, an efficient Python-based implementation of BM25 that only depends on Numpy and Scipy. BM25S achieves up to a 500x speedup compared to the most popular Python-based framework by eagerly computing BM25 scores during indexing and storing them into sparse matrices. It also achieves considerable speedups compared to highly optimized Java-based implementations, which are used by popular commercial products. Finally, BM25S reproduces the exact implementation of five BM25 variants based on Kamphuis et al. (2020) by extending eager scoring to non-sparse variants using a novel score shifting method. The code can be found at https://github.com/xhluca/bm25s

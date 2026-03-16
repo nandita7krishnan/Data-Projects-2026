@@ -22,9 +22,10 @@ RELATIONSHIP_TYPES = [
     "SIMILAR_TO",     # FAISS SIMILAR_TO ChromaDB  (symmetric)
     "USED_IN",        # Embedding USED_IN Semantic Search
     "REQUIRES",       # RAG REQUIRES Vector Database
-    "ALTERNATIVE_TO", # LoRA ALTERNATIVE_TO Fine-tuning  (symmetric)
-    "BUILT_WITH",     # LangChain BUILT_WITH LLM
-    "EXTENDS",        # ReAct EXTENDS Chain-of-Thought
+    "ALTERNATIVE_TO",    # LoRA ALTERNATIVE_TO Fine-tuning  (symmetric)
+    "COMPLEMENTARY_TO",  # Fine-tuning COMPLEMENTARY_TO RAG  (used together)
+    "BUILT_WITH",        # LangChain BUILT_WITH LLM
+    "EXTENDS",           # ReAct EXTENDS Chain-of-Thought
 ]
 
 DIFFICULTY_LEVELS = ["beginner", "intermediate", "advanced", "expert"]
@@ -107,6 +108,60 @@ class GraphSubgraph:
             r for r in self.relationships
             if r.source == concept_name or r.target == concept_name
         ]
+
+
+# ── GraphRAG dataclasses ─────────────────────────────────────────────────────
+
+@dataclass
+class TextChunk:
+    """A chunk of text from a source document, used during corpus ingestion."""
+    chunk_id: str          # "{source_file}::{chunk_index}"
+    source_file: str       # original file name
+    chunk_index: int       # position within the file
+    text: str              # the actual text content
+
+    def to_dict(self) -> dict:
+        return {
+            "chunk_id": self.chunk_id,
+            "source_file": self.source_file,
+            "chunk_index": self.chunk_index,
+            "text": self.text,
+        }
+
+    @classmethod
+    def from_dict(cls, d: dict) -> "TextChunk":
+        return cls(
+            chunk_id=d["chunk_id"],
+            source_file=d["source_file"],
+            chunk_index=d["chunk_index"],
+            text=d["text"],
+        )
+
+
+@dataclass
+class Community:
+    """A cluster of related concepts detected by community detection (Louvain)."""
+    community_id: int
+    node_names: list[str]           # concept names in this cluster
+    summary: str = ""               # LLM-generated summary of the cluster
+    key_concepts: list[str] = field(default_factory=list)  # top concepts by PageRank
+
+    def to_dict(self) -> dict:
+        return {
+            "community_id": self.community_id,
+            "node_names": self.node_names,
+            "summary": self.summary,
+            "key_concepts": self.key_concepts,
+        }
+
+    @classmethod
+    def from_dict(cls, d: dict) -> "Community":
+        return cls(
+            community_id=d["community_id"],
+            node_names=d["node_names"],
+            summary=d.get("summary", ""),
+            key_concepts=d.get("key_concepts", []),
+        )
 
 
 # ── GraphClient Protocol ────────────────────────────────────────────────────

@@ -1,0 +1,21 @@
+# AI Guardrails
+
+Category: Concept | Difficulty: intermediate
+
+Source: Seed knowledge base
+
+
+## Definition
+
+Safety mechanisms — technical, policy, or procedural — designed to constrain AI system behavior within ethical, legal, and operational boundaries. Guardrails prevent harmful outputs, enforce content policies, and ensure compliance.
+
+## Example Use Cases
+
+- Preventing toxic content generation
+- Blocking PII leakage
+- Enforcing brand voice
+- Regulatory compliance for AI products
+
+## Related Tools
+
+Guardrails AI, NeMo Guardrails, LlamaGuard, Azure AI Content Safety

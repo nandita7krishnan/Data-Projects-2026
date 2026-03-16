@@ -1,0 +1,5 @@
+# LoRA (machine learning)
+
+Source: Wikipedia
+
+LoRA is a parameter-efficient fine-tuning technique for large language models and other deep neural networks. Introduced in 2021 by researchers at Microsoft, LoRA enables adaptation of pre-trained models to specific tasks while requiring significantly fewer computational resources and trainable parameters than traditional full model fine-tuning.

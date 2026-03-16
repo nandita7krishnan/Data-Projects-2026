@@ -1,0 +1,18 @@
+# arXiv Papers: Attention Mechanism
+
+Source: arXiv
+
+
+## Paper 1: Generalized Probabilistic Attention Mechanism in Transformers
+
+The Transformer architecture has become widely adopted due to its demonstrated success, attributed to the attention mechanism at its core. Despite these successes, the attention mechanism of Transformers is associated with two well-known issues: rank-collapse and gradient vanishing. In this paper, we present a theoretical analysis that it is inherently difficult to address both issues simultaneously in the conventional attention mechanism. To handle these issues, we introduce a novel class of attention mechanism, referred to as generalized probabilistic attention mechanism (GPAM), and its dual-attention implementation within the Transformer architecture. Unlike conventional attention mechanisms, GPAM allows for negative attention scores while preserving a fixed total sum. We provide theoretical evidence that the proposed dual-attention GPAM (daGPAM) effectively mitigates both the rank-collapse and gradient vanishing issues which are difficult to resolve simultaneously with the conventional attention mechanisms. Furthermore, we empirically validate this theoretical evidence, demonstrating the superiority of daGPAM compared to other alternative attention mechanisms that were proposed to address the same issues. Additionally, we demonstrate the practical benefits of GPAM in natural language processing tasks, such as language modeling and neural machine translation.
+
+
+## Paper 2: Generalized Attention Mechanism and Relative Position for Transformer
+
+In this paper, we propose generalized attention mechanism (GAM) by first suggesting a new interpretation for self-attention mechanism of Vaswani et al. . Following the interpretation, we provide description for different variants of attention mechanism which together form GAM. Further, we propose a new relative position representation within the framework of GAM. This representation can be easily utilized for cases in which elements next to each other in input sequence can be at random locations in actual dataset/corpus.
+
+
+## Paper 3: Fine-Grained Attention Mechanism for Neural Machine Translation
+
+Neural machine translation (NMT) has been a new paradigm in machine translation, and the attention mechanism has become the dominant approach with the state-of-the-art records in many language pairs. While there are variants of the attention mechanism, all of them use only temporal attention where one scalar value is assigned to one context vector corresponding to a source word. In this paper, we propose a fine-grained (or 2D) attention mechanism where each dimension of a context vector will receive a separate attention score. In experiments with the task of En-De and En-Fi translation, the fine-grained attention method improves the translation quality in terms of BLEU score. In addition, our alignment analysis reveals how the fine-grained attention mechanism exploits the internal structure of context vectors.

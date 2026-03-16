@@ -1,0 +1,5 @@
+# Computer science
+
+Source: Wikipedia
+
+Computer science is the study of computation, information, and automation. Included broadly in the sciences, computer science spans theoretical disciplines to applied disciplines. An expert in the field is known as a computer scientist.

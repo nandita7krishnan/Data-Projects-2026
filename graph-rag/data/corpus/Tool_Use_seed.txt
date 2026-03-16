@@ -1,0 +1,21 @@
+# Tool Use
+
+Category: Technique | Difficulty: intermediate
+
+Source: Seed knowledge base
+
+
+## Definition
+
+The capability of an LLM to call external functions, APIs, or tools as part of its reasoning. The model decides when to call a tool, what arguments to pass, and incorporates the result into its answer.
+
+## Example Use Cases
+
+- Web search
+- Calculator
+- Database queries
+- Code execution
+
+## Related Tools
+
+OpenAI Function Calling, Anthropic Tool Use, LangChain tools

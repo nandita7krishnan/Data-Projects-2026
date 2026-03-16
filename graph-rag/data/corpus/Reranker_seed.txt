@@ -1,0 +1,20 @@
+# Reranker
+
+Category: Technique | Difficulty: intermediate
+
+Source: Seed knowledge base
+
+
+## Definition
+
+A model (typically a cross-encoder) that takes a query and a retrieved document and produces a relevance score. Used as a second-stage after initial retrieval to reorder candidates by true relevance, significantly improving precision.
+
+## Example Use Cases
+
+- Improving RAG precision
+- Search quality
+- Document filtering
+
+## Related Tools
+
+Cohere Rerank, cross-encoder/ms-marco, sentence-transformers

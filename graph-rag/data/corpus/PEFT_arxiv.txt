@@ -1,0 +1,18 @@
+# arXiv Papers: PEFT
+
+Source: arXiv
+
+
+## Paper 1: Quantum-PEFT: Ultra parameter-efficient fine-tuning
+
+This paper introduces Quantum-PEFT that leverages quantum computations for parameter-efficient fine-tuning (PEFT). Unlike other additive PEFT methods, such as low-rank adaptation (LoRA), Quantum-PEFT exploits an underlying full-rank yet surprisingly parameter efficient quantum unitary parameterization. With the use of Pauli parameterization, the number of trainable parameters grows only logarithmically with the ambient dimension, as opposed to linearly as in LoRA-based PEFT methods. Quantum-PEFT achieves vanishingly smaller number of trainable parameters than the lowest-rank LoRA as dimensions grow, enhancing parameter efficiency while maintaining a competitive performance. We apply Quantum-PEFT to several transfer learning benchmarks in language and vision, demonstrating significant advantages in parameter efficiency.
+
+
+## Paper 2: PEFT-Bench: A Parameter-Efficient Fine-Tuning Methods Benchmark
+
+Despite the state-of-the-art performance of Large Language Models (LLMs) achieved on many tasks, their massive scale often leads to high computational and environmental costs, limiting their accessibility. Parameter-Efficient Fine-Tuning (PEFT) methods address this challenge by reducing the number of trainable parameters while maintaining strong downstream performance. Despite the advances in PEFT methods, current evaluations remain limited (in terms of evaluated models and datasets) and difficult to reproduce. To bridge this gap, we introduce PEFT-Bench, a unified end-to-end benchmark for evaluating diverse PEFT methods on autoregressive LLMs. We demonstrate its usage across 27 NLP datasets and 7 PEFT methods. To account for different PEFT training and inference factors, we also introduce the PEFT Soft Cost Penalties (PSCP) metric, which takes trainable parameters, inference speed, and training memory usage into account.
+
+
+## Paper 3: FISH-Tuning: Enhancing PEFT Methods with Fisher Information
+
+The rapid growth in the parameter size of Large Language Models (LLMs) has spurred the development of Parameter-Efficient Fine-Tuning (PEFT) methods to mitigate the substantial computational costs of fine-tuning. Among these, Fisher Induced Sparse uncHanging (FISH) Mask is a selection-based PEFT technique that identifies a critical subset of pre-trained parameters using approximate Fisher information. While addition-based and reparameterization-based PEFT methods like LoRA and Adapter already fine-tune only a small number of parameters, the newly introduced parameters within these methods themselves present an opportunity for further optimization. Selectively fine-tuning only the most impactful among these new parameters could further reduce resource consumption while maintaining, or even improving, fine-tuning effectiveness. In this paper, we propose \textbf{FISH-Tuning}, a novel approach that incorporates FISH Mask into such PEFT methods, including LoRA, Adapter, and their variants. By leveraging Fisher information to identify and update only the most significant parameters within these added or reparameterized components, FISH-Tuning aims to achieve superior performance without increasing training time or inference latency compared to the vanilla PEFT methods. Experimental results across various datasets and pre-trained models demonstrate that FISH-Tuning consistently outperforms the vanilla PEFT methods when using the same proportion of trainable parameters. Code is available at https://anonymous.4open.science/r/FISH-Tuning-6F7C.

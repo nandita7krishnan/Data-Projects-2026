@@ -1,0 +1,24 @@
+# RAGAS
+
+Category: Evaluation | Difficulty: intermediate
+
+Source: Seed knowledge base
+
+
+## Definition
+
+RAG Assessment — an evaluation framework for measuring RAG pipeline quality across multiple dimensions: faithfulness, answer relevance, context precision, and context recall. Uses LLM-as-judge approach.
+
+## Example Use Cases
+
+- RAG system benchmarking
+- Automated QA testing
+- Continuous evaluation pipelines
+
+## Related Tools
+
+LangChain, LlamaIndex, OpenAI
+
+## References
+
+- Es et al. 2023 - RAGAS: Automated Evaluation of Retrieval Augmented Generation

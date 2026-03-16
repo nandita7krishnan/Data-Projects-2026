@@ -1,0 +1,25 @@
+# Agent Rules
+
+Category: Concept | Difficulty: beginner
+
+Source: Seed knowledge base
+
+
+## Definition
+
+Persistent instructions configured once that an AI coding agent respects in every interaction — defining what the agent should do, what it must avoid, preferred output formats, coding conventions, and security precautions. Typically stored in CLAUDE.md or similar configuration files.
+
+## Example Use Cases
+
+- Enforcing no-test-deletion policy
+- Specifying preferred libraries
+- Setting language/framework constraints
+- Defining commit message format
+
+## Related Tools
+
+CLAUDE.md, AGENTS.md, Claude Code, Cursor
+
+## References
+
+- antoniocortes.com - AI Coding Agents: Key Concepts 2026

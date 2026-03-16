@@ -10,9 +10,11 @@ from __future__ import annotations
 import json
 import logging
 import re
+from pathlib import Path
 from typing import Optional
 
-from src.graph.schema import RELATIONSHIP_TYPES, ConceptNode, GraphClient
+from config.settings import PROCESSED_CHUNKS_PATH
+from src.graph.schema import RELATIONSHIP_TYPES, ConceptNode, GraphClient, TextChunk
 
 logger = logging.getLogger(__name__)
 
@@ -134,4 +136,80 @@ def ingest_text(
         "triples_extracted": len(triples),
         "new_concepts": new_concepts,
         "new_relationships": new_relationships,
+    }
+
+
+def batch_ingest_corpus(
+    chunks: list[TextChunk],
+    graph_client: GraphClient,
+    ollama_client,
+    model: str,
+    refresh_known_every: int = 20,
+) -> dict:
+    """
+    Run relationship extraction over every TextChunk and accumulate results
+    into the graph. Tracks processed chunk_ids in a sidecar JSON file so
+    the process can be resumed if interrupted.
+
+    Args:
+        chunks: list of TextChunk objects from document_loader
+        graph_client: the graph backend to write into
+        ollama_client: connected Ollama client
+        model: Ollama model name
+        refresh_known_every: refresh known concept names from graph every N chunks
+
+    Returns:
+        stats dict: {chunks_processed, chunks_skipped, triples_total,
+                     new_concepts_total, new_relationships_total}
+    """
+    # Load already-processed chunk IDs
+    processed_ids: set[str] = set()
+    if PROCESSED_CHUNKS_PATH.exists():
+        try:
+            with open(PROCESSED_CHUNKS_PATH, encoding="utf-8") as f:
+                processed_ids = set(json.load(f))
+        except Exception:
+            processed_ids = set()
+
+    chunks_processed = 0
+    chunks_skipped = 0
+    triples_total = 0
+    new_concepts_total = 0
+    new_relationships_total = 0
+
+    known_names: set[str] = set(graph_client.get_all_concept_names())
+    total = len(chunks)
+
+    for i, chunk in enumerate(chunks):
+        if chunk.chunk_id in processed_ids:
+            chunks_skipped += 1
+            continue
+
+        print(f"  [{i+1}/{total}] Extracting from: {chunk.source_file} chunk {chunk.chunk_index}", end="\r")
+
+        # Refresh known concept names periodically
+        if chunks_processed > 0 and chunks_processed % refresh_known_every == 0:
+            known_names = set(graph_client.get_all_concept_names())
+
+        stats = ingest_text(chunk.text, graph_client, ollama_client, model)
+
+        triples_total += stats["triples_extracted"]
+        new_concepts_total += stats["new_concepts"]
+        new_relationships_total += stats["new_relationships"]
+
+        # Mark as processed and persist
+        processed_ids.add(chunk.chunk_id)
+        PROCESSED_CHUNKS_PATH.parent.mkdir(parents=True, exist_ok=True)
+        with open(PROCESSED_CHUNKS_PATH, "w", encoding="utf-8") as f:
+            json.dump(list(processed_ids), f)
+
+        chunks_processed += 1
+
+    print()  # clear \r line
+    return {
+        "chunks_processed": chunks_processed,
+        "chunks_skipped": chunks_skipped,
+        "triples_total": triples_total,
+        "new_concepts_total": new_concepts_total,
+        "new_relationships_total": new_relationships_total,
     }

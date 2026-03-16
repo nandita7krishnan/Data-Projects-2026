@@ -3,7 +3,8 @@ Graph RAG CLI — command-line interface for the AI Concepts Knowledge Graph.
 
 Commands:
     seed        Load seed data into graph + vector store
-    query       Run a natural language query through the full pipeline
+    ingest      Fetch corpus (Wikipedia/arXiv), extract graph, build communities
+    query       Run a natural language query (auto-routes global vs local)
     path        Find learning path between two concepts
     curriculum  Generate a learning curriculum for a target concept
     status      Show graph statistics
@@ -50,6 +51,103 @@ def cmd_seed(args) -> None:
     print("\n✅ Seeding complete!")
 
 
+def cmd_ingest(args) -> None:
+    """
+    Full GraphRAG ingestion pipeline:
+      1. Fetch Wikipedia + arXiv documents for all known concepts
+      2. Chunk documents into text segments
+      3. Extract entities + relationships from each chunk via LLM
+      4. Run Louvain community detection on the graph
+      5. Generate LLM summaries for each community
+    """
+    from pathlib import Path
+    from src.graph import get_graph_client
+    from src.ingestion.corpus_fetcher import fetch_corpus
+    from src.ingestion.document_loader import load_corpus, get_corpus_stats
+    from src.ingestion.relationship_extractor import batch_ingest_corpus
+    from src.graph.community_detector import detect_communities
+    from src.ingestion.community_summarizer import generate_community_summaries
+    from src.llm.answer_generator import AnswerGenerator
+    from config.settings import CORPUS_DIR, OLLAMA_MODEL
+
+    client = get_graph_client()
+    generator = AnswerGenerator()
+
+    if not generator.available:
+        print("❌ Ollama is required for ingestion. Start it with: ollama serve")
+        return
+
+    ollama_client = generator.get_client()
+    corpus_dir = Path(args.corpus_dir) if args.corpus_dir else CORPUS_DIR
+
+    # ── Step 1: Fetch documents ──────────────────────────────────────────────
+    print("\n📥 Step 1/5: Fetching corpus documents...")
+    concept_names = client.get_all_concept_names()
+    if not concept_names:
+        print("  ⚠ Graph is empty. Running seed first...")
+        from src.ingestion.seed_data import load_seed_concepts, seed_graph
+        seed_graph(client)
+        concept_names = client.get_all_concept_names()
+
+    # Load seed concept data for fallback corpus generation
+    from src.ingestion.seed_data import load_seed_concepts
+    seed_concept_list, _ = load_seed_concepts()
+    seed_map = {c.name: c.to_dict() for c in seed_concept_list}
+
+    print(f"  Fetching Wikipedia + arXiv + official docs for {len(concept_names)} concepts...")
+    fetch_stats = fetch_corpus(concept_names, corpus_dir, seed_concepts=seed_map)
+    print(f"  ✓ Files fetched: {fetch_stats['fetched']}  "
+          f"skipped: {fetch_stats['skipped']}  failed: {fetch_stats['failed']}")
+
+    # ── Step 2: Chunk documents ──────────────────────────────────────────────
+    print("\n✂  Step 2/5: Chunking documents...")
+    # Invalidate chunk cache if new files were fetched
+    from config.settings import CHUNKS_CACHE_PATH
+    use_cache = fetch_stats["fetched"] == 0
+    chunks = load_corpus(corpus_dir, use_cache=use_cache)
+    if CHUNKS_CACHE_PATH.exists() and not use_cache:
+        # Delete old cache so load_corpus rebuilds it
+        CHUNKS_CACHE_PATH.unlink()
+        chunks = load_corpus(corpus_dir, use_cache=False)
+    print(f"  ✓ Total chunks: {len(chunks)}")
+
+    if not chunks:
+        print("  ❌ No chunks found. Check that corpus_dir contains .txt or .md files.")
+        return
+
+    # ── Step 3: Extract relationships ────────────────────────────────────────
+    print(f"\n🔍 Step 3/5: Extracting entities + relationships from {len(chunks)} chunks...")
+    print("  (This may take a while — Ollama processes each chunk)")
+    extract_stats = batch_ingest_corpus(chunks, client, ollama_client, OLLAMA_MODEL)
+    print(f"  ✓ Chunks processed: {extract_stats['chunks_processed']}  "
+          f"skipped: {extract_stats['chunks_skipped']}")
+    print(f"  ✓ Triples extracted: {extract_stats['triples_total']}  "
+          f"new concepts: {extract_stats['new_concepts_total']}  "
+          f"new relationships: {extract_stats['new_relationships_total']}")
+
+    # ── Step 4: Community detection ──────────────────────────────────────────
+    print("\n🔗 Step 4/5: Running Louvain community detection...")
+    try:
+        communities = detect_communities(client)
+        print(f"  ✓ Detected {len(communities)} communities")
+        for c in communities[:5]:
+            print(f"    Community {c.community_id}: {len(c.node_names)} concepts "
+                  f"({', '.join(c.node_names[:4])}{'...' if len(c.node_names) > 4 else ''})")
+    except ImportError as e:
+        print(f"  ❌ {e}")
+        return
+
+    # ── Step 5: Community summarization ─────────────────────────────────────
+    print(f"\n📝 Step 5/5: Generating LLM summaries for {len(communities)} communities...")
+    communities = generate_community_summaries(communities, client, ollama_client, OLLAMA_MODEL)
+    print(f"  ✓ Summaries generated for {sum(1 for c in communities if c.summary)} communities")
+
+    print("\n✅ GraphRAG ingestion complete!")
+    print(f"   Graph: {client.get_stats()['nodes']} concepts, {client.get_stats()['edges']} relationships")
+    print(f"   Communities: {len(communities)} (with summaries)")
+    print("\n   Try: python main.py query \"What are the main approaches to language modeling?\"")
+
+
 def cmd_status(args) -> None:
     """Display graph statistics."""
     from src.graph import get_graph_client
@@ -83,13 +181,16 @@ def cmd_status(args) -> None:
 
 
 def cmd_query(args) -> None:
-    """Run a query through the full Graph RAG pipeline."""
+    """Run a query through the full GraphRAG pipeline (auto-routes global vs local)."""
     from src.graph import get_graph_client
     from src.llm.answer_generator import AnswerGenerator
     from src.retrieval.context_assembler import assemble_context
     from src.retrieval.entity_extractor import EntityExtractor
     from src.retrieval.graph_retriever import GraphRetriever
     from src.retrieval.vector_retriever import VectorRetriever
+    from src.retrieval.query_router import route_query
+    from src.retrieval.global_retriever import GlobalRetriever
+    from src.ingestion.community_summarizer import load_community_summaries
     from config.settings import OLLAMA_MODEL
 
     query = args.query
@@ -105,10 +206,40 @@ def cmd_query(args) -> None:
         print("⚠  Graph is empty. Run: python main.py seed")
         return
 
+    # ── Query routing ────────────────────────────────────────────────────────
+    route = route_query(query, ollama_client=generator.get_client())
+    print(f"🗺  Route: {route.upper()}")
+
+    # ── Global path (map-reduce over community summaries) ────────────────────
+    if route == "global":
+        communities = load_community_summaries()
+        if not communities:
+            print("  ⚠ No community summaries found. Run: python main.py ingest")
+            print("  Falling back to local retrieval...\n")
+            route = "local"
+        else:
+            global_retriever = GlobalRetriever(communities, generator.get_client())
+            result = global_retriever.retrieve(query)
+
+            print(f"   Used {result.communities_used} communities")
+            print("\n💬 Answer:")
+            print("─" * 60)
+            print(result.final_answer)
+
+            if result.error:
+                print(f"\n⚠  Note: {result.error}")
+
+            if args.show_context and result.partial_answers:
+                print("\n📋 Partial Answers (Map Step):")
+                print("─" * 60)
+                for i, pa in enumerate(result.partial_answers):
+                    print(f"[{i+1}] {pa}\n")
+            return
+
+    # ── Local path (BFS graph traversal) ─────────────────────────────────────
     extractor = EntityExtractor(names, ollama_client=generator.get_client())
     retriever = GraphRetriever(client)
 
-    # Entity extraction
     concept_name, confidence = extractor.extract(query)
     if concept_name is None:
         print("❌ Could not identify an AI concept in this query.")
@@ -117,17 +248,14 @@ def cmd_query(args) -> None:
 
     print(f"🎯 Detected concept: {concept_name} (confidence: {confidence:.2f})")
 
-    # Graph retrieval
     mode = GraphRetriever.detect_mode(query)
     subgraph = retriever.retrieve(concept_name, mode=mode)
     print(f"   Retrieved {len(subgraph.nodes)} nodes, {len(subgraph.relationships)} relationships ({mode} mode)")
 
-    # Vector augmentation
     vector_results = vector.search(query, exclude_names=[concept_name])
     if vector_results:
         print(f"   Found {len(vector_results)} supporting vector results")
 
-    # Context assembly + LLM
     context = assemble_context(subgraph, vector_results=vector_results)
     result = generator.generate(query, context, concept_name)
 
@@ -238,9 +366,11 @@ def main():
         epilog="""
 Examples:
   python main.py seed
+  python main.py ingest
+  python main.py ingest --corpus-dir /path/to/docs
   python main.py status
   python main.py query "What is RAG?"
-  python main.py query "What does GraphRAG depend on?"
+  python main.py query "What are the main approaches to language modeling?"
   python main.py path "Tokenization" "GraphRAG"
   python main.py curriculum --target GraphRAG --known "Python,Machine Learning"
   python main.py serve
@@ -251,6 +381,17 @@ Examples:
 
     # seed
     subparsers.add_parser("seed", help="Load seed concepts into graph + vector store")
+
+    # ingest
+    p_ingest = subparsers.add_parser(
+        "ingest",
+        help="Fetch corpus, extract graph, detect communities, generate summaries (full GraphRAG pipeline)",
+    )
+    p_ingest.add_argument(
+        "--corpus-dir",
+        default=None,
+        help="Directory to store/read corpus files (default: data/corpus/)",
+    )
 
     # status
     subparsers.add_parser("status", help="Show graph statistics")
@@ -283,6 +424,7 @@ Examples:
 
     commands = {
         "seed": cmd_seed,
+        "ingest": cmd_ingest,
         "status": cmd_status,
         "query": cmd_query,
         "path": cmd_path,

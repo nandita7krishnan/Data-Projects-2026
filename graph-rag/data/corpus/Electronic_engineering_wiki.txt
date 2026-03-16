@@ -1,0 +1,5 @@
+# Electronic engineering
+
+Source: Wikipedia
+
+Electronic engineering is a sub-discipline of electrical engineering that emerged in the early 20th century and is distinguished by the additional use of active components such as semiconductor devices to amplify and control electric current flow. Previously electrical engineering only used passive devices such as mechanical switches, resistors, inductors, and capacitors.

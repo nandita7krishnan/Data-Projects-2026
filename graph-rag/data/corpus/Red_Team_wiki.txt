@@ -1,0 +1,5 @@
+# Red Team
+
+Source: Wikipedia
+
+A red team is a group that attempts a physical or digital intrusion against an organization.

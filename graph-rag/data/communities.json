@@ -1,0 +1,866 @@
+[
+  {
+    "community_id": 0,
+    "node_names": [
+      "AGENTS.md",
+      "AI Assistant",
+      "AI coding agent",
+      "AI/ML Company",
+      "AI/ML Model",
+      "Agent Rules",
+      "Anthropic",
+      "Artificial Intelligence Language Models",
+      "Auto memory",
+      "Build commands, debugging insights, preferences",
+      "CLAUDE.md",
+      "CLAUDE.md files",
+      "Claude",
+      "Claude (family of large language models)",
+      "Claude Code session",
+      "Claude analysis",
+      "Coding standards, workflows, project architecture",
+      "Compact Language Models",
+      "Computational Model",
+      "Configuration",
+      "Configuration files",
+      "Consistency",
+      "Context Window",
+      "Generative Pre-trained Transformers (GPTs)",
+      "Hook Event",
+      "Hook Handler",
+      "Import",
+      "Information Theory",
+      "Instruction file",
+      "Instructions",
+      "Instructions and rules",
+      "Language Model",
+      "Large Language Models",
+      "Learnings and patterns",
+      "Matcher Group",
+      "Memory system",
+      "Persistent instructions",
+      "Project Root",
+      "README",
+      "Rules",
+      "Session",
+      "Small Language Models",
+      "Specificity",
+      "auto memory",
+      "context",
+      "corrections",
+      "instructions",
+      "learnings",
+      "notes",
+      "organization-wide instructions",
+      "package.json",
+      "project",
+      "project CLAUDE.md",
+      "project rules",
+      "team-shared instructions",
+      "topic-specific files",
+      "user instructions",
+      "version control",
+      "workflow guide"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 1,
+    "node_names": [
+      "@-mentions",
+      "AI Coding Agent",
+      "AI Model",
+      "AI-powered coding assistant",
+      "AI/ML Framework",
+      "AI/ML Frameworks (e.g. TensorFlow, PyTorch)",
+      "AI/ML System",
+      "AI/ML Tool",
+      "AI/ML Tool Suite",
+      "AI/ML concepts",
+      "Agent",
+      "Agent Skills",
+      "Agent Skills open standard",
+      "Agent Team",
+      "Agentic AI",
+      "Anthropic Console account",
+      "Auto Memory",
+      "Built-in commands",
+      "Bundled skills",
+      "Claude Code",
+      "Claude iOS app",
+      "Code tab",
+      "Conversation History",
+      "Cursor",
+      "Dynamic context injection",
+      "Framework",
+      "Git",
+      "Inline Diffs",
+      "Invocation control",
+      "MCP (Model Context Protocol)",
+      "MCP Server",
+      "Model Context Protocol",
+      "Model Context Protocol (MCP)",
+      "Multi-Agent Orchestration",
+      "Open Standard",
+      "Paid subscription",
+      "Physical AI",
+      "Plan Review",
+      "Project Management",
+      "Protocol",
+      "ReAct",
+      "Skills",
+      "Slash Commands",
+      "Structure",
+      "Subagent execution",
+      "Terminal CLI",
+      "Tool Use",
+      "Universal Interface",
+      "Unix philosophy",
+      "VS Code",
+      "VS Code Extension",
+      "VS Code extension",
+      "Web browser",
+      "development tools",
+      "third-party providers"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 2,
+    "node_names": [
+      "AI-Native Development Platform",
+      "AI/ML Concepts",
+      "Artificial Neural Network Architecture",
+      "Artificially Generated Data",
+      "Attention Mechanism",
+      "BERT",
+      "ChromaDB",
+      "Chunking",
+      "Database",
+      "Embedding Model",
+      "FAISS",
+      "Faithfulness",
+      "Fine-tuning",
+      "GPT",
+      "GraphRAG",
+      "Instruction Tuning",
+      "KV Cache",
+      "Knowledge Graph",
+      "LangChain",
+      "Large Language Model",
+      "Library",
+      "LlamaIndex",
+      "LoRA",
+      "Machine Learning Models",
+      "Mathematical Models",
+      "Multi-hop Reasoning",
+      "Multimodal AI",
+      "Neo4j",
+      "Ollama",
+      "PEFT",
+      "Pinecone",
+      "QLoRA",
+      "Qdrant",
+      "Quantization",
+      "RAG document storage",
+      "RAGAS",
+      "RLHF",
+      "Recommendation systems",
+      "Retrieval-Augmented Generation",
+      "Semantic clustering",
+      "Semantic search at scale",
+      "SentenceTransformers",
+      "Small Language Model",
+      "Synthetic Data",
+      "Token",
+      "Tokenization",
+      "Transformer",
+      "Vector Database",
+      "Video Understanding",
+      "Weaviate"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 3,
+    "node_names": [
+      "AI Guardrails",
+      "Agent Hooks",
+      "Artificial Intelligence",
+      "Artificial Neural Network",
+      "Biological Neural Network",
+      "Computational Linguistics",
+      "Computational System",
+      "Computer Science",
+      "Context Engineering",
+      "Decision-Making",
+      "Deep Learning",
+      "Digital Provenance",
+      "Engineering",
+      "Explainable AI",
+      "Explainable Machine Learning",
+      "Field of Research in Computer Science",
+      "Grounding",
+      "Hallucination",
+      "Hearing",
+      "Intelligent Agent",
+      "Interpretable AI",
+      "Large Language Model (LLM)",
+      "Machine Learning",
+      "Machine Learning Model",
+      "Multi-Agent System",
+      "Natural Language Generation",
+      "Neural Circuits",
+      "Neural Network",
+      "Neural Networks",
+      "Perception",
+      "Problem-Solving",
+      "Reasoning",
+      "Red-Teaming",
+      "Self-Organized System",
+      "Sensory Information Processing",
+      "Slop",
+      "Smell",
+      "Software Engineering",
+      "Statistical Algorithms",
+      "Synapse",
+      "Text-to-image model",
+      "Vision"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 4,
+    "node_names": [
+      "AI model",
+      "APIs or Tools",
+      "BM25",
+      "Bi-encoder",
+      "Cross-encoder",
+      "Dense Retrieval",
+      "Document",
+      "Document Loader",
+      "Documents",
+      "HyDE",
+      "Hybrid Search",
+      "Initial retrieval",
+      "LLM",
+      "LangChain loaders",
+      "LlamaIndex readers",
+      "Model",
+      "Query",
+      "RAG",
+      "Reasoning + Acting",
+      "Reliability",
+      "Reranker",
+      "Sparse Retrieval",
+      "Technique",
+      "Tool",
+      "Unstructured.io",
+      "cURL"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 5,
+    "node_names": [
+      "Archaeology",
+      "Archival Science",
+      "Chronology",
+      "Computing",
+      "Custody",
+      "Document Retrieval",
+      "Economy",
+      "Embedding",
+      "Information Retrieval",
+      "Information Science",
+      "Location",
+      "Natural Language Processing",
+      "Numerical Vectors",
+      "Ownership",
+      "Paleontology",
+      "Place",
+      "Provenance",
+      "Question Answering",
+      "Ranking",
+      "Recommender Systems",
+      "Search Engine Queries",
+      "Semantic Search",
+      "Vector Embeddings"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 6,
+    "node_names": [
+      "Communication of information",
+      "Computer science",
+      "Data Analysis",
+      "Data Interpretation",
+      "Data Presentation",
+      "Electrical engineering",
+      "Electronic engineering",
+      "Geometry",
+      "Information theory",
+      "Language",
+      "Learning Theory",
+      "Mathematical Modeling",
+      "Mathematical study",
+      "Mathematics",
+      "Model Construction",
+      "Neurobiology",
+      "Philosophy",
+      "Physics",
+      "Rationality",
+      "Reason",
+      "Religion",
+      "Science",
+      "Statistics"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 7,
+    "node_names": [
+      "ConfigChange",
+      "Elicitation",
+      "ElicitationResult",
+      "Event",
+      "Hook Lifecycle",
+      "InstructionsLoaded",
+      "Notification",
+      "PermissionRequest",
+      "PostCompact",
+      "PostToolUse",
+      "PostToolUseFailure",
+      "PreCompact",
+      "PreToolUse",
+      "SessionEnd",
+      "SessionStart",
+      "Stop",
+      "SubagentStart",
+      "SubagentStop",
+      "TaskCompleted",
+      "TeammateIdle",
+      "UserPromptSubmit",
+      "WorktreeCreate",
+      "WorktreeRemove"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 8,
+    "node_names": [
+      "AI",
+      "AI/ML Concept",
+      "API",
+      "Agent SDK",
+      "Anthropic SDK",
+      "Built-in Command",
+      "Claude API",
+      "Claude Agent SDK",
+      "Claude's Capabilities",
+      "Claude's Toolkit",
+      "Command",
+      "Custom Command",
+      "Plugin",
+      "Project",
+      "Python SDK",
+      "SDK",
+      "SKILL.md",
+      "SKILL.md file",
+      "Skill",
+      "TypeScript SDK",
+      "YAML frontmatter",
+      "markdown content"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 9,
+    "node_names": [
+      "Activity",
+      "Attitudes",
+      "Behavior",
+      "Beliefs",
+      "Cognitive Process",
+      "Decision-making",
+      "Human activity",
+      "Human economic activities",
+      "Knowledge",
+      "Learning",
+      "Preferences",
+      "Process",
+      "Psychology",
+      "Series",
+      "Understanding",
+      "Values"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 10,
+    "node_names": [
+      "Activity (UML)",
+      "Classification model/algorithm",
+      "Claude Haiku 4.5",
+      "Claude Sonnet 4.5",
+      "Complex tasks with multiple considerations",
+      "Downstream processes, prompts, and tools",
+      "Having the same LLM call handle both guardrails and the core response",
+      "LLM call",
+      "Parallelization",
+      "Prompt Chaining",
+      "Reviewing a piece of code for vulnerabilities",
+      "Routing",
+      "Sectioning",
+      "Task",
+      "Voting",
+      "Workflow"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 11,
+    "node_names": [
+      "AI-first code editor",
+      "Agentic Systems",
+      "Agents",
+      "Augmented LLM",
+      "Augmented Models",
+      "Composer feature",
+      "Frameworks",
+      "LLM APIs",
+      "LLMs",
+      "Separate LLM call",
+      "Tools",
+      "Workflows"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 12,
+    "node_names": [
+      "Aesthetic ranking",
+      "Cross-modal retrieval",
+      "Deep learning",
+      "Image captioning",
+      "Information retrieval",
+      "Machine learning",
+      "Multimodal learning",
+      "Neural networks",
+      "Text-to-image generation",
+      "Traditional information retrieval systems",
+      "Visual question answering"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 13,
+    "node_names": [
+      "AI/ML Development Environment",
+      "Claude Code Plugin",
+      "Claude Code plugin",
+      "Diff Viewing",
+      "IntelliJ IDEA",
+      "JetBrains IDEs",
+      "PyCharm",
+      "Selection Context Sharing",
+      "WebStorm"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 14,
+    "node_names": [
+      "Agent Hook",
+      "Async Hook",
+      "Claude Code Lifecycle",
+      "Code Hook",
+      "HTTP Hook",
+      "Hook",
+      "MCP Tool Hook",
+      "Prompt Hook",
+      "Prompt-based hook"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 15,
+    "node_names": [
+      "Algorithmic Search",
+      "Machine Learning Paradigm",
+      "Reinforcement Learning",
+      "Self-Organizing Map",
+      "Supervised Learning",
+      "Supervised Learning Algorithm",
+      "Support Vector Machine",
+      "Unsupervised Learning"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 16,
+    "node_names": [
+      "C#",
+      "Go",
+      "Java",
+      "PHP",
+      "Programming Language",
+      "Python",
+      "Ruby",
+      "TypeScript"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 17,
+    "node_names": [
+      "Chain-of-Thought",
+      "Few-shot Learning",
+      "Fine-tuning LLMs",
+      "Generative Artificial Intelligence (GenAI) Model",
+      "In-context Learning",
+      "Prompt Engineering",
+      "Zero-shot Learning"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 18,
+    "node_names": [
+      "ASCII art",
+      "analogies",
+      "analogy",
+      "diagram",
+      "explanation",
+      "gotcha",
+      "walk-through"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 19,
+    "node_names": [
+      "Assumptions about the World",
+      "Bodily Interactions with Environment",
+      "Cognitive Theory",
+      "Embodied Cognition",
+      "Motor System",
+      "Perceptual System"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 20,
+    "node_names": [
+      "Adversarial Attack",
+      "Defense",
+      "Group",
+      "Organization",
+      "Penetration Testing",
+      "Red Team"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 21,
+    "node_names": [
+      "Automate",
+      "CLI",
+      "Orchestration",
+      "Pipe",
+      "Script",
+      "Unix Philosophy"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 22,
+    "node_names": [
+      "Answer relevance metric",
+      "Context precision metric",
+      "Context recall metric",
+      "Evaluation framework",
+      "Faithfulness metric",
+      "RAG Assessment"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 23,
+    "node_names": [
+      "Application Platform as a Service",
+      "Cloud Computing",
+      "Developing and Launching Application(s)",
+      "Infrastructure",
+      "Platform as a Service"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 24,
+    "node_names": [
+      "Chatbot",
+      "Software Agent",
+      "Software Application",
+      "Task Execution",
+      "Virtual Assistant"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 25,
+    "node_names": [
+      "AI system behavior",
+      "Ethical boundaries",
+      "Legal boundaries",
+      "Operational boundaries",
+      "Safety mechanisms"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 26,
+    "node_names": [
+      "Classification",
+      "Density estimation",
+      "Discriminative model",
+      "Generative model",
+      "Machine learning model"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 27,
+    "node_names": [
+      "AI/ML",
+      "Computer Vision",
+      "Computer vision",
+      "Image understanding"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 28,
+    "node_names": [
+      "Claude Code Installation",
+      "Homebrew",
+      "Native Install",
+      "WinGet"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 29,
+    "node_names": [
+      "Code Review and Issue Triage",
+      "GitHub Actions",
+      "GitLab CI/CD",
+      "Manual Code Review"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 30,
+    "node_names": [
+      "Mathematical model",
+      "Model theory",
+      "Physical models of mathematical objects",
+      "Polyhedron model"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 31,
+    "node_names": [
+      "Audio plug-in",
+      "Photoshop plugin",
+      "Plug-in (computing)",
+      "Software component"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 32,
+    "node_names": [
+      "AI agent",
+      "generative artificial intelligence",
+      "intelligent agent"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 33,
+    "node_names": [
+      "Existing Software System",
+      "Plug-in",
+      "Software System"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 34,
+    "node_names": [
+      "license",
+      "open standard",
+      "standard"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 35,
+    "node_names": [
+      "Okapi BM25",
+      "ranking function",
+      "search engines"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 36,
+    "node_names": [
+      "Artificial intelligence",
+      "Generative artificial intelligence",
+      "Generative models"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 37,
+    "node_names": [
+      "hook",
+      "hooks",
+      "matcher"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 38,
+    "node_names": [
+      "block-rm.sh",
+      "jq",
+      "script"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 39,
+    "node_names": [
+      "/explain-code",
+      "/slash-command",
+      "skill name"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 40,
+    "node_names": [
+      "Automating evals",
+      "Evaluating LLM performance",
+      "Evaluating a different aspect of the model\u2019s performance on a given prompt"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 41,
+    "node_names": [
+      "Cloud computing",
+      "network access",
+      "paradigm"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 42,
+    "node_names": [
+      "Ensemble Method",
+      "Gradient Boosting",
+      "Single Model"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 43,
+    "node_names": [
+      "Convolutional Neural Network",
+      "Large Dataset",
+      "Neural Network Architecture"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 44,
+    "node_names": [
+      "Claude's decision to invoke automatically",
+      "Claude's decision to load automatically",
+      "skill description"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 45,
+    "node_names": [
+      "Abstract structures",
+      "Data Structures",
+      "Musical form"
+    ],
+    "summary": "",
+    "key_concepts": []
+  },
+  {
+    "community_id": 46,
+    "node_names": [
+      "Metasearch Engine",
+      "Search Engine",
+      "Web Search Engine"
+    ],
+    "summary": "",
+    "key_concepts": []
+  }
+]

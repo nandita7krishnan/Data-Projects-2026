@@ -1,0 +1,5 @@
+# Anthropic
+
+Source: Wikipedia
+
+Anthropic PBC is an American artificial intelligence (AI) company headquartered in San Francisco. It has developed a family of large language models (LLMs) named Claude. Anthropic operates as a public benefit corporation, which researches and develops AI to "study their safety properties at the technological frontier" and use this research to deploy safe models for the public.

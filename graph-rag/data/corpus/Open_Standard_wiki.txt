@@ -1,0 +1,5 @@
+# Open standard
+
+Source: Wikipedia
+
+An open standard is a standard that is openly accessible and usable by anyone. It is also a common prerequisite that open standards use an open license that provides for extensibility. Typically, anybody can participate in their development due to their inherently open nature. There is no single definition, and interpretations vary with usage. Examples of open standards include the GSM, 4G, and 5G standards that allow most modern mobile phones to work world-wide.

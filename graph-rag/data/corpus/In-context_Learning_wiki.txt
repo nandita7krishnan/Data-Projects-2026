@@ -1,0 +1,5 @@
+# Prompt engineering
+
+Source: Wikipedia
+
+Prompt engineering is the process of structuring natural language inputs to produce specified outputs from a generative artificial intelligence (GenAI) model. Context engineering is the related area of software engineering that focuses on the management of non-prompt contexts supplied to the GenAI model, such as metadata, API tools, and tokens.

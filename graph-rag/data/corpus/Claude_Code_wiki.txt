@@ -1,0 +1,5 @@
+# Claude (language model)
+
+Source: Wikipedia
+
+Claude is a series of large language models developed by Anthropic and first released in 2023. It is named after Claude Shannon, who pioneered information theory.

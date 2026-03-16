@@ -1,0 +1,5 @@
+# Virtual assistant
+
+Source: Wikipedia
+
+A virtual assistant (VA) is a software agent that can perform a range of tasks or services for a user based on user input, such as commands or questions, including verbal ones. Such technologies often incorporate chatbot capabilities to streamline task execution. The interaction may be via text, graphical interface, or voice, as some virtual assistants are able to interpret human speech and respond via synthesized voices.

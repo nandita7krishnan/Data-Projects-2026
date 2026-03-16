@@ -1,0 +1,5 @@
+# Small language model
+
+Source: Wikipedia
+
+Small language models or compact language models are artificial intelligence language models designed for human natural language processing including language and text generation. They are smaller in scale and scope than large language models.

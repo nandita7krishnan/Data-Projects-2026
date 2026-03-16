@@ -1,0 +1,5 @@
+# Quantization
+
+Source: Wikipedia
+
+Quantization is the process of constraining an input from a continuous or otherwise large set of values to a discrete set. The term quantization may refer to:

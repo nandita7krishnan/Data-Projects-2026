@@ -1,0 +1,313 @@
+# CLAUDE.md
+
+Source: https://docs.anthropic.com/en/docs/claude-code/memory
+
+How Claude remembers your project - Claude Code Docs
+
+Skip to main content
+
+Claude Code Docs  home page
+
+English
+
+Search...
+
+⌘ K
+
+Ask AI
+
+Claude Developer Platform
+
+Claude Code on the Web
+
+Claude Code on the Web
+
+Search...
+
+Navigation
+
+Core concepts
+
+How Claude remembers your project
+
+Getting started
+
+Build with Claude Code
+
+Deployment
+
+Administration
+
+Configuration
+
+Reference
+
+Resources
+
+Getting started
+
+Overview
+
+Quickstart
+
+Changelog
+
+Core concepts
+
+How Claude Code works
+
+Extend Claude Code
+
+Store instructions and memories
+
+Common workflows
+
+Best practices
+
+Platforms and integrations
+
+Remote Control
+
+Claude Code on the web
+
+Claude Code on desktop
+
+Chrome extension (beta)
+
+Visual Studio Code
+
+JetBrains IDEs
+
+Code review
+
+CI/CD
+
+Claude Code in Slack
+
+On this page
+
+CLAUDE.md vs auto memory
+
+CLAUDE.md files
+
+Choose where to put CLAUDE.md files
+
+Set up a project CLAUDE.md
+
+Write effective instructions
+
+Import additional files
+
+How CLAUDE.md files load
+
+Load from additional directories
+
+Organize rules with .claude/rules/
+
+Set up rules
+
+Path-specific rules
+
+Share rules across projects with symlinks
+
+User-level rules
+
+Manage CLAUDE.md for large teams
+
+Deploy organization-wide CLAUDE.md
+
+Exclude specific CLAUDE.md files
+
+Auto memory
+
+Enable or disable auto memory
+
+Storage location
+
+How it works
+
+Audit and edit your memory
+
+View and edit with /memory
+
+Troubleshoot memory issues
+
+Claude isn’t following my CLAUDE.md
+
+I don’t know what auto memory saved
+
+My CLAUDE.md is too large
+
+Instructions seem lost after /compact
+
+Related resources
+
+Core concepts
+
+How Claude remembers your project
+
+Copy page
+
+Give Claude persistent instructions with CLAUDE.md files, and let Claude accumulate learnings automatically with auto memory.
+
+Copy page
+
+Each Claude Code session begins with a fresh context window. Two mechanisms carry knowledge across sessions:
+
+CLAUDE.md files : instructions you write to give Claude persistent context
+
+Auto memory : notes Claude writes itself based on your corrections and preferences
+
+This page covers how to:
+
+Write and organize CLAUDE.md files
+
+Scope rules to specific file types  with  .claude/rules/
+
+Configure auto memory  so Claude takes notes automatically
+
+Troubleshoot  when instructions aren’t being followed
+
+​
+
+CLAUDE.md vs auto memory
+
+Claude Code has two complementary memory systems. Both are loaded at the start of every conversation. Claude treats them as context, not enforced configuration. The more specific and concise your instructions, the more consistently Claude follows them.
+
+CLAUDE.md files  Auto memory
+
+Who writes it
+
+You  Claude
+
+What it contains
+
+Instructions and rules  Learnings and patterns
+
+Scope
+
+Project, user, or org  Per working tree
+
+Loaded into
+
+Every session  Every session (first 200 lines)
+
+Use for
+
+Coding standards, workflows, project architecture  Build commands, debugging insights, preferences Claude discovers
+
+Use CLAUDE.md files when you want to guide Claude’s behavior. Auto memory lets Claude learn from your corrections without manual effort.
+
+Subagents can also maintain their own auto memory. See  subagent configuration  for details.
+
+​
+
+CLAUDE.md files
+
+CLAUDE.md files are markdown files that give Claude persistent instructions for a project, your personal workflow, or your entire organization. You write these files in plain text; Claude reads them at the start of every session.
+
+​
+
+Choose where to put CLAUDE.md files
+
+CLAUDE.md files can live in several locations, each with a different scope. More specific locations take precedence over broader ones.
+
+Scope  Location  Purpose  Use case examples  Shared with
+
+Managed policy
+
+• macOS:  /Library/Application Support/ClaudeCode/CLAUDE.md  • Linux and WSL:  /etc/claude-code/CLAUDE.md  • Windows:  C:\Program Files\ClaudeCode\CLAUDE.md
+
+Organization-wide instructions managed by IT/DevOps  Company coding standards, security policies, compliance requirements  All users in organization
+
+Project instructions
+
+./CLAUDE.md  or  ./.claude/CLAUDE.md
+
+Team-shared instructions for the project  Project architecture, coding standards, common workflows  Team members via source control
+
+User instructions
+
+~/.claude/CLAUDE.md
+
+Personal preferences for all projects  Code styling preferences, personal tooling shortcuts  Just you (all projects)
+
+CLAUDE.md files in the directory hierarchy above the working directory are loaded in full at launch. CLAUDE.md files in subdirectories load on demand when Claude reads files in those directories. See  How CLAUDE.md files load  for the full resolution order.
+
+For large projects, you can break instructions into topic-specific files using  project rules . Rules let you scope instructions to specific file types or subdirectories.
+
+​
+
+Set up a project CLAUDE.md
+
+A project CLAUDE.md can be stored in either  ./CLAUDE.md  or  ./.claude/CLAUDE.md . Create this file and add instructions that apply to anyone working on the project: build and test commands, coding standards, architectural decisions, naming conventions, and common workflows. These instructions are shared with your team through version control, so focus on project-level standards rather than personal preferences.
+
+Run  /init  to generate a starting CLAUDE.md automatically. Claude analyzes your codebase and creates a file with build commands, test instructions, and project conventions it discovers. If a CLAUDE.md already exists,  /init  suggests improvements rather than overwriting it. Refine from there with instructions Claude wouldn’t discover on its own.
+
+​
+
+Write effective instructions
+
+CLAUDE.md files are loaded into the context window at the start of every session, consuming tokens alongside your conversation. Because they’re context rather than enforced configuration, how you write instructions affects how reliably Claude follows them. Specific, concise, well-structured instructions work best.
+
+Size : target under 200 lines per CLAUDE.md file. Longer files consume more context and reduce adherence. If your instructions are growing large, split them using  imports  or
+
+.claude/rules/
+
+files.
+
+Structure : use markdown headers and bullets to group related instructions. Claude scans structure the same way readers do: organized sections are easier to follow than dense paragraphs.
+
+Specificity : write instructions that are concrete enough to verify. For example:
+
+“Use 2-space indentation” instead of “Format code properly”
+
+“Run  npm test  before committing” instead of “Test your changes”
+
+“API handlers live in  src/api/handlers/ ” instead of “Keep files organized”
+
+Consistency : if two rules contradict each other, Claude may pick one arbitrarily. Review your CLAUDE.md files, nested CLAUDE.md files in subdirectories, and
+
+.claude/rules/
+
+periodically to remove outdated or conflicting instructions. In monorepos, use
+
+claudeMdExcludes
+
+to skip CLAUDE.md files from other teams that aren’t relevant to your work.
+
+​
+
+Import additional files
+
+CLAUDE.md files can import additional files using  @path/to/import  syntax. Imported files are expanded and loaded into context at launch alongside the CLAUDE.md that references them.
+
+Both relative and absolute paths are allowed. Relative paths resolve relative to the file containing the import, not the working directory. Imported files can recursively import other files, with a maximum depth of five hops.
+
+To pull in a README, package.json, and a workflow guide, reference them with  @  syntax anywhere in your CLAUDE.md:
+
+Report incorrect code
+
+Copy
+
+Ask AI
+
+See @README for project overview and @package.json for available npm commands for this project.
+
+# Additional Instructions
+
+- git workflow @docs/git-instructions.md
+
+For personal preferences you don’t want to check in, import a file from your home directory. The import goes in the shared CLAUDE.md, but the file it points to stays on your machine:
+
+Report incorrect code
+
+Copy
+
+Ask AI
+
+# Individual Preferences
+
+- @~/.claude/my-project-instructions.md
+
+The first time Claude Code encounters external impor

@@ -1,0 +1,5 @@
+# Platform as a service
+
+Source: Wikipedia
+
+Platform as a service (PaaS) or application platform as a service (aPaaS) or platform-based service is a cloud computing service model where users provision, instantiate, run and manage a modular bundle of a computing platform and applications, without the complexity of building and maintaining the infrastructure associated with developing and launching application(s), and to allow developers to create, develop, and package such software bundles.

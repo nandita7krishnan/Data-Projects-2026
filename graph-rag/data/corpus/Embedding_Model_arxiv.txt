@@ -1,0 +1,18 @@
+# arXiv Papers: Embedding Model
+
+Source: arXiv
+
+
+## Paper 1: Transformer based Multilingual document Embedding model
+
+One of the current state-of-the-art multilingual document embedding model LASER is based on the bidirectional LSTM neural machine translation model. This paper presents a transformer-based sentence/document embedding model, T-LASER, which makes three significant improvements. Firstly, the BiLSTM layers is replaced by the attention-based transformer layers, which is more capable of learning sequential patterns in longer texts. Secondly, due to the absence of recurrence, T-LASER enables faster parallel computations in the encoder to generate the text embedding. Thirdly, we augment the NMT translation loss function with an additional novel distance constraint loss. This distance constraint loss would further bring the embeddings of parallel sentences close together in the vector space; we call the T-LASER model trained with distance constraint, cT-LASER. Our cT-LASER model significantly outperforms both BiLSTM-based LASER and the simpler transformer-based T-LASER.
+
+
+## Paper 2: PhysBERT: A Text Embedding Model for Physics Scientific Literature
+
+The specialized language and complex concepts in physics pose significant challenges for information extraction through Natural Language Processing (NLP). Central to effective NLP applications is the text embedding model, which converts text into dense vector representations for efficient information retrieval and semantic analysis. In this work, we introduce PhysBERT, the first physics-specific text embedding model. Pre-trained on a curated corpus of 1.2 million arXiv physics papers and fine-tuned with supervised data, PhysBERT outperforms leading general-purpose models on physics-specific tasks including the effectiveness in fine-tuning for specific physics subdomains.
+
+
+## Paper 3: Dewey Long Context Embedding Model: A Technical Report
+
+This technical report presents the training methodology and evaluation results of the open-source dewey_en_beta embedding model. The increasing demand for retrieval-augmented generation (RAG) systems and the expanding context window capabilities of large language models (LLMs) have created critical challenges for conventional embedding models. Current approaches often struggle to maintain semantic coherence when processing documents exceeding typical sequence length limitations, significantly impacting retrieval performance in knowledge-intensive applications. This paper presents dewey_en_beta, a novel text embedding model that achieves excellent performance on MTEB (Eng, v2) and LongEmbed benchmark while supporting 128K token sequences. Our technical contribution centers on chunk alignment training, an innovative methodology that enables the simultaneous generation of localized chunk embeddings and global document-level representations through distillation. Information regarding the model release can be found at https://huggingface.co/infgrad/dewey_en_beta.

@@ -1,0 +1,24 @@
+# SentenceTransformers
+
+Category: Library | Difficulty: beginner
+
+Source: Seed knowledge base
+
+
+## Definition
+
+A Python library that provides easy-to-use, pre-trained transformer models optimized for generating sentence and document embeddings. Based on BERT/RoBERTa and fine-tuned with contrastive learning.
+
+## Example Use Cases
+
+- Generating embeddings for RAG
+- Sentence similarity scoring
+- Semantic clustering
+
+## Related Tools
+
+HuggingFace, FAISS, ChromaDB
+
+## References
+
+- Reimers & Gurevych 2019 - Sentence-BERT

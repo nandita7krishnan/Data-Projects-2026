@@ -1,0 +1,5 @@
+# FAISS
+
+Source: Wikipedia
+
+FAISS is an open-source library for similarity search and clustering of vectors. It contains algorithms that search in sets of vectors of any size, up to ones that possibly do not fit in RAM. It also contains supporting code for evaluation and parameter tuning.

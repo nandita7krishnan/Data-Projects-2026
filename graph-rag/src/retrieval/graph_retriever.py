@@ -107,7 +107,7 @@ class GraphRetriever:
         modes = {
             "standard": None,  # all types
             "prerequisite": ["REQUIRES", "IS_A", "PART_OF"],
-            "similarity": ["SIMILAR_TO", "VARIANT_OF", "ALTERNATIVE_TO"],
+            "similarity": ["SIMILAR_TO", "VARIANT_OF", "ALTERNATIVE_TO", "COMPLEMENTARY_TO"],
             "usage": ["USED_IN", "BUILT_WITH"],
         }
         return modes.get(mode, None)

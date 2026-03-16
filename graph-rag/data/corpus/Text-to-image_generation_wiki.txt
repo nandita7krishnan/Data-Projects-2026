@@ -1,0 +1,5 @@
+# Text-to-image model
+
+Source: Wikipedia
+
+A text-to-image model is a machine learning model which takes an input natural language prompt and produces an image matching that description.

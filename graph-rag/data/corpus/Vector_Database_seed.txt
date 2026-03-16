@@ -1,0 +1,20 @@
+# Vector Database
+
+Category: Infrastructure | Difficulty: intermediate
+
+Source: Seed knowledge base
+
+
+## Definition
+
+A database optimized for storing and querying high-dimensional embedding vectors. Supports approximate nearest neighbor (ANN) search to find the most similar vectors to a query in milliseconds.
+
+## Example Use Cases
+
+- RAG document storage
+- Recommendation systems
+- Semantic search at scale
+
+## Related Tools
+
+Pinecone, Weaviate, Qdrant, ChromaDB, FAISS

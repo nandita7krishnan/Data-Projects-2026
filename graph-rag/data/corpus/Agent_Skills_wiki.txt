@@ -1,0 +1,5 @@
+# Plug-in (computing)
+
+Source: Wikipedia
+
+In computing, a plug-in, add-in or extension is a software component that extends the functionality of an existing software system without requiring the system to be re-built. A plug-in feature is one way that a system can be customizable.

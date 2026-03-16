@@ -1,0 +1,20 @@
+# Token
+
+Category: Concept | Difficulty: beginner
+
+Source: Seed knowledge base
+
+
+## Definition
+
+The basic unit of text that LLMs process. A token is roughly 4 characters or 0.75 words in English. Models have token limits for both input and output, which determines how much text they can handle at once.
+
+## Example Use Cases
+
+- Pricing API calls
+- Measuring prompt length
+- Setting output limits
+
+## Related Tools
+
+tiktoken

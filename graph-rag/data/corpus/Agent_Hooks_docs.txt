@@ -1,0 +1,623 @@
+# Agent Hooks
+
+Source: https://docs.anthropic.com/en/docs/claude-code/hooks
+
+Hooks reference - Claude Code Docs
+
+Skip to main content
+
+Claude Code Docs  home page
+
+English
+
+Search...
+
+⌘ K
+
+Ask AI
+
+Claude Developer Platform
+
+Claude Code on the Web
+
+Claude Code on the Web
+
+Search...
+
+Navigation
+
+Reference
+
+Hooks reference
+
+Getting started
+
+Build with Claude Code
+
+Deployment
+
+Administration
+
+Configuration
+
+Reference
+
+Resources
+
+Reference
+
+CLI reference
+
+Built-in commands
+
+Environment variables
+
+Tools reference
+
+Interactive mode
+
+Checkpointing
+
+Hooks reference
+
+Plugins reference
+
+On this page
+
+Hook lifecycle
+
+How a hook resolves
+
+Configuration
+
+Hook locations
+
+Matcher patterns
+
+Match MCP tools
+
+Hook handler fields
+
+Common fields
+
+Command hook fields
+
+HTTP hook fields
+
+Prompt and agent hook fields
+
+Reference scripts by path
+
+Hooks in skills and agents
+
+The /hooks menu
+
+Disable or remove hooks
+
+Hook input and output
+
+Common input fields
+
+Exit code output
+
+Exit code 2 behavior per event
+
+HTTP response handling
+
+JSON output
+
+Decision control
+
+Hook events
+
+SessionStart
+
+SessionStart input
+
+SessionStart decision control
+
+Persist environment variables
+
+InstructionsLoaded
+
+InstructionsLoaded input
+
+InstructionsLoaded decision control
+
+UserPromptSubmit
+
+UserPromptSubmit input
+
+UserPromptSubmit decision control
+
+PreToolUse
+
+PreToolUse input
+
+PreToolUse decision control
+
+PermissionRequest
+
+PermissionRequest input
+
+PermissionRequest decision control
+
+PostToolUse
+
+PostToolUse input
+
+PostToolUse decision control
+
+PostToolUseFailure
+
+PostToolUseFailure input
+
+PostToolUseFailure decision control
+
+Notification
+
+Notification input
+
+SubagentStart
+
+SubagentStart input
+
+SubagentStop
+
+SubagentStop input
+
+Stop
+
+Stop input
+
+Stop decision control
+
+TeammateIdle
+
+TeammateIdle input
+
+TeammateIdle decision control
+
+TaskCompleted
+
+TaskCompleted input
+
+TaskCompleted decision control
+
+ConfigChange
+
+ConfigChange input
+
+ConfigChange decision control
+
+WorktreeCreate
+
+WorktreeCreate input
+
+WorktreeCreate output
+
+WorktreeRemove
+
+WorktreeRemove input
+
+PreCompact
+
+PreCompact input
+
+PostCompact
+
+PostCompact input
+
+SessionEnd
+
+SessionEnd input
+
+Elicitation
+
+Elicitation input
+
+Elicitation output
+
+ElicitationResult
+
+ElicitationResult input
+
+ElicitationResult output
+
+Prompt-based hooks
+
+How prompt-based hooks work
+
+Prompt hook configuration
+
+Response schema
+
+Example: Multi-criteria Stop hook
+
+Agent-based hooks
+
+How agent hooks work
+
+Agent hook configuration
+
+Run hooks in the background
+
+Configure an async hook
+
+How async hooks execute
+
+Example: run tests after file changes
+
+Limitations
+
+Security considerations
+
+Disclaimer
+
+Security best practices
+
+Debug hooks
+
+Reference
+
+Hooks reference
+
+Copy page
+
+Reference for Claude Code hook events, configuration schema, JSON input/output formats, exit codes, async hooks, HTTP hooks, prompt hooks, and MCP tool hooks.
+
+Copy page
+
+For a quickstart guide with examples, see  Automate workflows with hooks .
+
+Hooks are user-defined shell commands, HTTP endpoints, or LLM prompts that execute automatically at specific points in Claude Code’s lifecycle. Use this reference to look up event schemas, configuration options, JSON input/output formats, and advanced features like async hooks, HTTP hooks, and MCP tool hooks. If you’re setting up hooks for the first time, start with the  guide  instead.
+
+​
+
+Hook lifecycle
+
+Hooks fire at specific points during a Claude Code session. When an event fires and a matcher matches, Claude Code passes JSON context about the event to your hook handler. For command hooks, input arrives on stdin. For HTTP hooks, it arrives as the POST request body. Your handler can then inspect the input, take action, and optionally return a decision. Some events fire once per session, while others fire repeatedly inside the agentic loop:
+
+The table below summarizes when each event fires. The  Hook events  section documents the full input schema and decision control options for each one.
+
+Event  When it fires
+
+SessionStart
+
+When a session begins or resumes
+
+UserPromptSubmit
+
+When you submit a prompt, before Claude processes it
+
+PreToolUse
+
+Before a tool call executes. Can block it
+
+PermissionRequest
+
+When a permission dialog appears
+
+PostToolUse
+
+After a tool call succeeds
+
+PostToolUseFailure
+
+After a tool call fails
+
+Notification
+
+When Claude Code sends a notification
+
+SubagentStart
+
+When a subagent is spawned
+
+SubagentStop
+
+When a subagent finishes
+
+Stop
+
+When Claude finishes responding
+
+TeammateIdle
+
+When an  agent team  teammate is about to go idle
+
+TaskCompleted
+
+When a task is being marked as completed
+
+InstructionsLoaded
+
+When a CLAUDE.md or  .claude/rules/*.md  file is loaded into context. Fires at session start and when files are lazily loaded during a session
+
+ConfigChange
+
+When a configuration file changes during a session
+
+WorktreeCreate
+
+When a worktree is being created via  --worktree  or  isolation:  worktree  . Replaces default git behavior
+
+WorktreeRemove
+
+When a worktree is being removed, either at session exit or when a subagent finishes
+
+PreCompact
+
+Before context compaction
+
+PostCompact
+
+After context compaction completes
+
+Elicitation
+
+When an MCP server requests user input during a tool call
+
+ElicitationResult
+
+After a user responds to an MCP elicitation, before the response is sent back to the server
+
+SessionEnd
+
+When a session terminates
+
+​
+
+How a hook resolves
+
+To see how these pieces fit together, consider this  PreToolUse  hook that blocks destructive shell commands. The hook runs  block-rm.sh  before every Bash tool call:
+
+Report incorrect code
+
+Copy
+
+Ask AI
+
+{
+
+hooks
+
+: {
+
+PreToolUse
+
+: [
+
+{
+
+matcher
+
+:
+
+Bash
+
+,
+
+hooks
+
+: [
+
+{
+
+type
+
+:
+
+command
+
+,
+
+command
+
+:
+
+.claude/hooks/block-rm.sh
+
+}
+
+]
+
+}
+
+]
+
+}
+
+}
+
+The script reads the JSON input from stdin, extracts the command, and returns a  permissionDecision  of
+
+deny
+
+if it contains  rm -rf :
+
+Report incorrect code
+
+Copy
+
+Ask AI
+
+#!/bin/bash
+
+# .claude/hooks/block-rm.sh
+
+COMMAND  =  $(  jq
+
+-r
+
+&#x27;.tool_input.command&#x27;  )
+
+if
+
+echo
+
+$COMMAND
+
+|
+
+grep
+
+-q
+
+&#x27;rm -rf&#x27;  ;
+
+then
+
+jq
+
+-n
+
+&#x27;{
+
+hookSpecificOutput: {
+
+hookEventName:  PreToolUse ,
+
+permissionDecision:  deny ,
+
+permissionDecisionReason:  Destructive command blocked by hook
+
+}
+
+}&#x27;
+
+else
+
+exit
+
+0
+
+# allow the command
+
+fi
+
+Now suppose Claude Code decides to run  Bash  rm -rf /tmp/build  . Here’s what happens:
+
+1
+
+Event fires
+
+The  PreToolUse  event fires. Claude Code sends the tool input as JSON on stdin to the hook:
+
+Report incorrect code
+
+Copy
+
+Ask AI
+
+{
+
+tool_name
+
+:
+
+Bash
+
+,
+
+tool_input
+
+: {
+
+command
+
+:
+
+rm -rf /tmp/build
+
+},
+
+...
+
+}
+
+2
+
+Matcher checks
+
+The matcher
+
+Bash
+
+matches the tool name, so  block-rm.sh  runs. If you omit the matcher or use
+
+*  , the hook runs on every occurrence of the event. Hooks only skip when a matcher is defined and doesn’t match.
+
+3
+
+Hook handler runs
+
+The script extracts
+
+rm -rf /tmp/build
+
+from the input and finds  rm -rf , so it prints a decision to stdout:
+
+Report incorrect code
+
+Copy
+
+Ask AI
+
+{
+
+hookSpecificOutput
+
+: {
+
+hookEventName
+
+:
+
+PreToolUse
+
+,
+
+permissionDecision
+
+:
+
+deny
+
+,
+
+permissionDecisionReason
+
+:
+
+Destructive command blocked by hook
+
+}
+
+}
+
+If the command had been safe (like  npm test ), the script would hit  exit 0  instead, which tells Claude Code to allow the tool call with no further action.
+
+4
+
+Claude Code acts on the result
+
+Claude Code reads the JSON decision, blocks the tool call, and shows Claude the reason.
+
+The  Configuration  section below documents the full schema, and each  hook event  section documents what input your command receives and what output it can return.
+
+​
+
+Configuration
+
+Hooks are defined in JSON settings files. The configuration has three levels of nesting:
+
+Choose a  hook event  to respond to, like  PreToolUse  or  Stop
+
+Add a  matcher group  to filter when it fires, like “only for the Bash tool”
+
+Define one or more  hook handlers  to run when matched
+
+See  How a hook resolves  above for a complete walkthrough with an annotated example.
+
+This page uses specific terms for each level:  hook event 

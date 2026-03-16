@@ -3,7 +3,9 @@
     "allow": [
       "Bash(python3 -c \":*)",
       "Bash(python3 main.py seed)",
-      "Bash(python3 main.py status)"
+      "Bash(python3 main.py status)",
+      "Bash(python3 -c \"import json; data = json.load\\(open\\(''/Users/nanditakrishnan/Data-Projects-2026/graph-rag/data/seed_concepts.json''\\)\\); print\\(f''Concepts: {len\\(data[\"\"concepts\"\"]\\)}, Relationships: {len\\(data[\"\"relationships\"\"]\\)}''\\)\")",
+      "WebFetch(domain:antoniocortes.com)"
     ]
   }
 }

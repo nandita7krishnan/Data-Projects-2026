@@ -1,0 +1,24 @@
+# ReAct
+
+Category: Technique | Difficulty: intermediate
+
+Source: Seed knowledge base
+
+
+## Definition
+
+Reasoning + Acting — a prompting framework where the LLM alternates between generating reasoning traces (Thought) and taking tool actions (Act), then observing results (Observe) in a loop. Improves reliability and interpretability of agents.
+
+## Example Use Cases
+
+- Complex multi-step Q&A
+- Web research agents
+- Database-augmented reasoning
+
+## Related Tools
+
+LangChain, LlamaIndex
+
+## References
+
+- Yao et al. 2022 - ReAct: Synergizing Reasoning and Acting in LLMs

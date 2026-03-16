@@ -1,0 +1,21 @@
+# Cursor
+
+Category: Tool | Difficulty: beginner
+
+Source: Seed knowledge base
+
+
+## Definition
+
+An AI-first code editor (forked from VS Code) with deep integration of LLMs for code completion, editing, and chat. Supports per-project configuration rules, MCP servers, and agent-style multi-file editing through its Composer feature.
+
+## Example Use Cases
+
+- AI-assisted coding
+- Multi-file refactoring with agents
+- Codebase Q&A
+- Inline code generation
+
+## Related Tools
+
+Model Context Protocol, VS Code, Anthropic API, OpenAI API

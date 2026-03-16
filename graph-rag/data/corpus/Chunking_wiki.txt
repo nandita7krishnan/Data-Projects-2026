@@ -1,0 +1,12 @@
+# Chunking
+
+Source: Wikipedia
+
+Chunking may mean:Chunking (division), an approach for doing simple mathematical division sums, by repeated subtraction
+Chunking, a method for parsing natural language sentences into partial syntactic structures
+Chunking (computing), a memory allocation or message transmission procedure or data splitting procedure in computer programming
+Chunking (music), a rhythm guitar and mandolin technique
+Chunking (psychology), a short-term memory mechanism and techniques to exploit it
+Chunking (writing), a method of splitting content into short, easily scannable elements, especially for web audiences
+CHUNKING, an extension method of the Simple Mail Transfer Protocol for delivering electronic mail in computer networking
+Pumpkin chunking, the activity of hurling pumpkins
