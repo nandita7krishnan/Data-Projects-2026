@@ -65,23 +65,23 @@ API_PORT = int(os.getenv("API_PORT", "8000"))
 
 # --- Dashboard colors by category ---
 CATEGORY_COLORS = {
-    "Architecture": "#4A90D9",
-    "Technique": "#F5A623",
-    "Model": "#7ED321",
-    "Tool": "#9B59B6",
-    "Library": "#E74C3C",
-    "Framework": "#1ABC9C",
-    "Concept": "#F39C12",
-    "Algorithm": "#2ECC71",
-    "Dataset": "#3498DB",
-    "Evaluation": "#E67E22",
-    "Domain": "#95A5A6",
-    "Infrastructure": "#34495E",
+    "Architecture": "#E8A0BF",   # dusty rose
+    "Technique": "#FF6B6B",      # coral red
+    "Model": "#6DBF8A",          # sage green
+    "Tool": "#FF9999",           # light salmon
+    "Library": "#C0392B",        # deep red
+    "Framework": "#55A868",      # muted green
+    "Concept": "#F48FB1",        # medium pink
+    "Algorithm": "#4CAF50",      # medium green
+    "Dataset": "#FF8080",        # light coral
+    "Evaluation": "#D63031",     # vivid red
+    "Domain": "#FFB3BA",         # baby pink
+    "Infrastructure": "#8E1A1A", # dark red
 }
 
 DIFFICULTY_COLORS = {
-    "beginner": "#2ECC71",
-    "intermediate": "#F39C12",
-    "advanced": "#E74C3C",
-    "expert": "#8E44AD",
+    "beginner": "#4CAF50",   # medium green
+    "intermediate": "#FF9999",  # light salmon pink
+    "advanced": "#E74C3C",   # red
+    "expert": "#C0392B",     # dark red
 }

@@ -51,8 +51,8 @@ def build_full_graph_html(
     net = Network(
         height=height,
         width="100%",
-        bgcolor="#0e1117",   # dark background matching Streamlit dark theme
-        font_color="white",
+        bgcolor="#FFE8EE",   # pastel pink background
+        font_color="#3a1020",
         directed=True,
     )
     net.set_options(_get_physics_options())
@@ -91,7 +91,7 @@ def build_full_graph_html(
             color=color,
             size=size,
             title=tooltip,
-            font={"size": 12, "color": "white"},
+            font={"size": 12, "color": "#3a1020"},
             borderWidth=3 if is_highlight else 1,
             borderWidthSelected=4,
         )
@@ -105,8 +105,8 @@ def build_full_graph_html(
             rel.target,
             label=rel.rel_type,
             title=f"{rel.source} {rel.rel_type} {rel.target}",
-            color={"color": "#666666", "highlight": "#FFD700"},
-            font={"size": 8, "color": "#aaaaaa"},
+            color={"color": "#E8A0BF", "highlight": "#C0392B"},
+            font={"size": 8, "color": "#8B3045"},
             arrows="to",
             smooth={"type": "curvedCW", "roundness": 0.2},
         )

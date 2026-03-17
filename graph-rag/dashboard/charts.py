@@ -28,7 +28,6 @@ def build_sunburst(
     import plotly.graph_objects as go
 
     scores = pagerank_scores or {}
-    min_size = 0.01
 
     # Group concepts by category
     categories: dict[str, list[ConceptNode]] = {}
@@ -40,7 +39,7 @@ def build_sunburst(
     # Compute bottom-up values so parents equal sum of children
     cat_totals: dict[str, float] = {}
     for cat, cat_concepts in categories.items():
-        cat_totals[cat] = sum(max(scores.get(c.name, min_size), min_size) for c in cat_concepts)
+        cat_totals[cat] = sum(scores.get(c.name, 0.01) for c in cat_concepts)
 
     root_total = sum(cat_totals.values())
 
@@ -49,8 +48,8 @@ def build_sunburst(
     labels.append("AI Concepts")
     parents.append("")
     values.append(root_total)
-    colors.append("#1e2130")
-    hovers.append(f"<b>AI Concepts</b><br>{len(concepts)} concepts total")
+    colors.append("#FFD6DC")
+    hovers.append(f"<b>AI Concepts</b><br>{len(concepts)} concepts")
 
     for cat, cat_concepts in sorted(categories.items()):
         cat_color = CATEGORY_COLORS.get(cat, "#888888")
@@ -63,7 +62,7 @@ def build_sunburst(
         hovers.append(f"<b>{cat}</b><br>{len(cat_concepts)} concepts")
 
         for c in cat_concepts:
-            score = max(scores.get(c.name, min_size), min_size)
+            score = scores.get(c.name, 0.01)
             defn = c.definition[:130] + "..." if len(c.definition) > 130 else c.definition
             ids.append(f"concept:{c.name}")
             labels.append(c.name)
@@ -82,7 +81,7 @@ def build_sunburst(
         parents=parents,
         values=values,
         branchvalues="total",
-        marker=dict(colors=colors, line=dict(color="#0e1117", width=1.5)),
+        marker=dict(colors=colors, line=dict(color="#FFE8EE", width=1.5)),
         hovertemplate="%{customdata}<extra></extra>",
         customdata=hovers,
         insidetextorientation="radial",
@@ -90,14 +89,14 @@ def build_sunburst(
     ))
 
     fig.update_layout(
-        paper_bgcolor="#0e1117",
-        plot_bgcolor="#0e1117",
+        paper_bgcolor="#FFE8EE",
+        plot_bgcolor="#FFE8EE",
         margin=dict(t=40, b=10, l=10, r=10),
         height=560,
-        font=dict(color="white", size=11),
+        font=dict(color="#3a1020", size=11),
         title=dict(
             text="AI Concepts — Radial Hierarchy by Category",
-            font=dict(size=14, color="white"),
+            font=dict(size=14, color="#3a1020"),
             x=0.5,
         ),
     )
@@ -118,14 +117,16 @@ def build_treemap(
     import plotly.graph_objects as go
 
     scores = pagerank_scores or {}
-    min_size = 0.01
+
+    # Only include concepts that have a real PageRank score
+    concepts = [c for c in concepts if scores.get(c.name, 0) > 0]
 
     categories: dict[str, list[ConceptNode]] = {}
     for c in concepts:
         categories.setdefault(c.category, []).append(c)
 
     cat_totals: dict[str, float] = {
-        cat: sum(max(scores.get(c.name, min_size), min_size) for c in cc)
+        cat: sum(scores.get(c.name, 0.01) for c in cc)
         for cat, cc in categories.items()
     }
     root_total = sum(cat_totals.values())
@@ -137,7 +138,7 @@ def build_treemap(
     labels.append("AI Concepts")
     parents.append("")
     values.append(root_total)
-    colors.append("#1e2130")
+    colors.append("#FFD6DC")
     hovers.append(f"<b>AI Concepts</b><br>{len(concepts)} concepts")
 
     for cat, cat_concepts in sorted(categories.items()):
@@ -151,7 +152,7 @@ def build_treemap(
         hovers.append(f"<b>{cat}</b><br>{len(cat_concepts)} concepts")
 
         for c in cat_concepts:
-            score = max(scores.get(c.name, min_size), min_size)
+            score = scores.get(c.name, 0.01)
             defn = c.definition[:100] + "..." if len(c.definition) > 100 else c.definition
             ids.append(f"concept:{c.name}")
             labels.append(c.name)
@@ -172,22 +173,22 @@ def build_treemap(
         branchvalues="total",
         marker=dict(
             colors=colors,
-            line=dict(color="#0e1117", width=2),
+            line=dict(color="#FFE8EE", width=2),
         ),
         hovertemplate="%{customdata}<extra></extra>",
         customdata=hovers,
-        textfont=dict(color="white", size=11),
+        textfont=dict(color="#3a1020", size=11),
         pathbar=dict(visible=True, thickness=22),
     ))
 
     fig.update_layout(
-        paper_bgcolor="#0e1117",
+        paper_bgcolor="#FFE8EE",
         height=560,
         margin=dict(t=50, b=10, l=10, r=10),
-        font=dict(color="white"),
+        font=dict(color="#3a1020"),
         title=dict(
             text="AI Concepts — Treemap by Category  (size = PageRank importance)",
-            font=dict(size=14, color="white"),
+            font=dict(size=14, color="#3a1020"),
             x=0.5,
         ),
     )
@@ -248,44 +249,44 @@ def build_heatmap(
         x=all_cats,
         y=all_cats,
         colorscale=[
-            [0.0,  "#0e1117"],
-            [0.01, "#1a2a4a"],
-            [0.25, "#1f6aa5"],
-            [0.6,  "#2ecc71"],
-            [1.0,  "#f39c12"],
+            [0.0,  "#FFE8EE"],
+            [0.01, "#FFB3BA"],
+            [0.25, "#FF6B6B"],
+            [0.6,  "#55A868"],
+            [1.0,  "#C0392B"],
         ],
         hovertemplate="%{customdata}<extra></extra>",
         customdata=hover,
         showscale=True,
         colorbar=dict(
-            title=dict(text="# Relationships", font=dict(color="white")),
-            tickfont=dict(color="white"),
-            bgcolor="#1e2130",
-            bordercolor="#333",
+            title=dict(text="# Relationships", font=dict(color="#3a1020")),
+            tickfont=dict(color="#3a1020"),
+            bgcolor="#FFE8EE",
+            bordercolor="#E8A0BF",
         ),
         xgap=2,
         ygap=2,
     ))
 
     fig.update_layout(
-        paper_bgcolor="#0e1117",
-        plot_bgcolor="#0e1117",
+        paper_bgcolor="#FFE8EE",
+        plot_bgcolor="#FFE8EE",
         height=520,
         margin=dict(t=60, b=80, l=120, r=20),
-        font=dict(color="white", size=11),
+        font=dict(color="#3a1020", size=11),
         title=dict(
             text="Category × Category Relationship Heatmap",
-            font=dict(size=14, color="white"),
+            font=dict(size=14, color="#3a1020"),
             x=0.5,
         ),
         xaxis=dict(
             tickangle=-35,
-            tickfont=dict(color="white", size=10),
-            gridcolor="#1e2130",
+            tickfont=dict(color="#3a1020", size=10),
+            gridcolor="#FFD6DC",
         ),
         yaxis=dict(
-            tickfont=dict(color="white", size=10),
-            gridcolor="#1e2130",
+            tickfont=dict(color="#3a1020", size=10),
+            gridcolor="#FFD6DC",
             autorange="reversed",
         ),
     )

@@ -45,12 +45,58 @@ st.set_page_config(
 # ── Custom CSS ───────────────────────────────────────────────────────────────
 st.markdown("""
 <style>
+/* ── App-wide pastel pink background + dark text ── */
+.stApp, [data-testid="stAppViewContainer"] {
+    background-color: #FFE8EE !important;
+    color: #3a1020 !important;
+}
+[data-testid="stSidebar"] {
+    background-color: #FFD6DC !important;
+    color: #3a1020 !important;
+}
+[data-testid="stSidebar"] * {
+    color: #3a1020 !important;
+}
+[data-testid="stHeader"] {
+    background-color: #FFE8EE !important;
+}
+/* Force all text dark */
+h1, h2, h3, h4, h5, h6,
+p, span, div, label, li,
+.stMarkdown, .stMarkdown p,
+.stMarkdown h1, .stMarkdown h2, .stMarkdown h3,
+.stText, .stCaption,
+[data-testid="stMarkdownContainer"],
+[data-testid="stMarkdownContainer"] * {
+    color: #3a1020 !important;
+}
+/* Tab labels */
+button[data-baseweb="tab"] {
+    color: #3a1020 !important;
+}
+/* Input / select boxes */
+.stTextInput input, .stSelectbox select,
+[data-baseweb="input"] input,
+[data-baseweb="select"] * {
+    color: #3a1020 !important;
+    background-color: #FFF0F3 !important;
+}
+/* Metric labels */
+[data-testid="stMetricLabel"], [data-testid="stMetricValue"] {
+    color: #3a1020 !important;
+}
+/* Expander */
+[data-testid="stExpander"] summary,
+[data-testid="stExpander"] summary span {
+    color: #3a1020 !important;
+}
 .concept-card {
-    background: #1e2130;
+    background: #FFF0F3;
     border-radius: 10px;
     padding: 16px;
     margin: 8px 0;
-    border-left: 4px solid #4A90D9;
+    border-left: 4px solid #E8A0BF;
+    color: #3a1020;
 }
 .difficulty-badge {
     display: inline-block;
@@ -62,12 +108,12 @@ st.markdown("""
 }
 .rel-tag {
     display: inline-block;
-    background: #2d3748;
+    background: #FFD6DC;
     border-radius: 6px;
     padding: 2px 8px;
     margin: 2px;
     font-size: 12px;
-    color: #a0aec0;
+    color: #8B3045;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -214,7 +260,7 @@ with tab_search:
                 mode = GraphRetriever.detect_mode(query)
 
             # ── Concept card ─────────────────────────────────────────────
-            col_card, col_graph = st.columns([1, 1])
+            col_card, col_graph = st.columns([1, 1.6])
 
             with col_card:
                 diff_color = DIFFICULTY_COLORS.get(concept.difficulty, "#888")
@@ -245,8 +291,8 @@ with tab_search:
                 # Show mini subgraph
                 subgraph = graph_retriever.retrieve(concept_name, mode="standard", hops=1)
                 from dashboard.graph_viz import build_subgraph_html
-                html = build_subgraph_html(subgraph, pagerank_scores, height="300px")
-                st.components.v1.html(html, height=310, scrolling=False)
+                html = build_subgraph_html(subgraph, pagerank_scores, height="480px")
+                st.components.v1.html(html, height=490, scrolling=False)
 
             # ── Relationships panel ──────────────────────────────────────
             st.markdown("#### Relationships")
@@ -345,10 +391,30 @@ with tab_graph:
             if rel.source in filtered_names and rel.target in filtered_names:
                 all_rels.append(rel)
 
-    # ── View selector ────────────────────────────────────────────────────────
-    viz_tab_net, viz_tab_sunburst, viz_tab_treemap, viz_tab_heatmap = st.tabs([
-        "🕸 Network Graph", "🌞 Sunburst", "▦ Treemap", "🔥 Relationship Heatmap"
+    # ── View selector (sunburst first = default) ──────────────────────────────
+    viz_tab_sunburst, viz_tab_treemap, viz_tab_net, viz_tab_heatmap = st.tabs([
+        "🌞 Sunburst", "▦ Treemap", "🕸 Network Graph", "🔥 Relationship Heatmap"
     ])
+
+    # ── Sunburst ─────────────────────────────────────────────────────────────
+    with viz_tab_sunburst:
+        st.caption(
+            "Inner ring = category · Outer ring = concept · "
+            "Sector size = PageRank importance · Hover for definition"
+        )
+        from dashboard.charts import build_sunburst
+        fig_sun = build_sunburst(filtered_nodes, pagerank_scores)
+        st.plotly_chart(fig_sun, use_container_width=True)
+
+    # ── Treemap ──────────────────────────────────────────────────────────────
+    with viz_tab_treemap:
+        st.caption(
+            "Nested rectangles grouped by category · "
+            "Rectangle size = PageRank importance · Hover for definition"
+        )
+        from dashboard.charts import build_treemap
+        fig_tree = build_treemap(filtered_nodes, pagerank_scores)
+        st.plotly_chart(fig_tree, use_container_width=True)
 
     # ── Network graph ────────────────────────────────────────────────────────
     with viz_tab_net:
@@ -370,26 +436,6 @@ with tab_graph:
                 f'<span style="color:{color}">■</span> {cat}',
                 unsafe_allow_html=True,
             )
-
-    # ── Sunburst ─────────────────────────────────────────────────────────────
-    with viz_tab_sunburst:
-        st.caption(
-            "Inner ring = category · Outer ring = concept · "
-            "Sector size = PageRank importance · Hover for definition"
-        )
-        from dashboard.charts import build_sunburst
-        fig_sun = build_sunburst(filtered_nodes, pagerank_scores)
-        st.plotly_chart(fig_sun, use_container_width=True)
-
-    # ── Treemap ──────────────────────────────────────────────────────────────
-    with viz_tab_treemap:
-        st.caption(
-            "Nested rectangles grouped by category · "
-            "Rectangle size = PageRank importance · Hover for definition"
-        )
-        from dashboard.charts import build_treemap
-        fig_tree = build_treemap(filtered_nodes, pagerank_scores)
-        st.plotly_chart(fig_tree, use_container_width=True)
 
     # ── Relationship Heatmap ─────────────────────────────────────────────────
     with viz_tab_heatmap:
@@ -512,7 +558,7 @@ with tab_path:
                     diff_color = DIFFICULTY_COLORS.get(c.difficulty if c else "intermediate", "#888")
 
                     prefix = "🎯" if is_target else ("✅" if is_known else f"{i+1}.")
-                    bg = "#1a2a1a" if is_known else ("#1a1a2a" if is_target else "#1e2130")
+                    bg = "#E8F5EC" if is_known else ("#FFE4E8" if is_target else "#FFF0F3")
 
                     st.markdown(
                         f'<div style="background:{bg};border-radius:6px;padding:8px;margin:4px 0">'
