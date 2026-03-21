@@ -1,0 +1,24 @@
+# Ollama Modelfile for the Boardroom fine-tuned model
+#
+# Usage:
+#   1. Place your GGUF file in this directory (downloaded from Colab)
+#   2. Run: ollama create boardroom -f Modelfile
+#   3. Test: ollama run boardroom
+#
+# The model is character-conditioned via system prompt.
+# Pass different system prompts to get different characters.
+
+FROM ./Llama-3.1-8B-Instruct.Q4_K_M.gguf
+
+TEMPLATE """<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+
+{{ .System }}<|eot_id|><|start_header_id|>user<|end_header_id|>
+
+{{ .Prompt }}<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+"""
+
+PARAMETER temperature 0.8
+PARAMETER top_p 0.9
+PARAMETER stop "<|eot_id|>"
+PARAMETER num_predict 256

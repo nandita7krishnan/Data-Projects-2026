@@ -1,0 +1,443 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #0a0a0a;
+  color: #e5e5e5;
+  min-height: 100vh;
+}
+
+.app {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.header h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #ffffff 0%, #999999 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  color: #666;
+  margin-top: 0.5rem;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Pitch Input */
+.pitch-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.pitch-input textarea {
+  background: #111111;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  padding: 1.25rem;
+  color: #e5e5e5;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.pitch-input textarea:focus {
+  outline: none;
+  border-color: #444;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.03);
+}
+
+.pitch-input textarea:disabled {
+  opacity: 0.5;
+}
+
+.pitch-input button {
+  align-self: flex-end;
+  background: #ffffff;
+  color: #0a0a0a;
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem 2rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.pitch-input button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
+}
+
+.pitch-input button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Loading */
+.loading {
+  text-align: center;
+  padding: 3rem 0;
+  color: #666;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid #222;
+  border-top-color: #666;
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Error */
+.error {
+  background: #1a0a0a;
+  border: 1px solid #3d1515;
+  border-radius: 12px;
+  padding: 1rem;
+  color: #f87171;
+  margin-bottom: 2rem;
+}
+
+/* Debate Thread */
+.debate-thread {
+  margin-bottom: 2rem;
+}
+
+.pitch-display {
+  background: linear-gradient(135deg, #111111 0%, #161616 100%);
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.pitch-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #555;
+  text-transform: uppercase;
+}
+
+.pitch-display p {
+  margin-top: 0.75rem;
+  font-size: 1.15rem;
+  color: #ffffff;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+/* Phase */
+.phase {
+  margin-bottom: 2.5rem;
+}
+
+.phase-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #555;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #1a1a1a;
+}
+
+.phase-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Message Entrance Animation */
+.message-entrance {
+  animation: messageSlideIn 0.5s ease-out forwards;
+}
+
+@keyframes messageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade In (for phases and vote tally) */
+.fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Character Message */
+.character-message {
+  display: flex;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: #111111;
+  border-radius: 12px;
+  border: 1px solid #1e1e1e;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.character-message:hover {
+  border-color: #2a2a2a;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Avatar with Glow Ring */
+.avatar-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  padding: 2px;
+  background: var(--char-color);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--char-color) 40%, transparent);
+  flex-shrink: 0;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  background: #0a0a0a;
+}
+
+.avatar-fallback {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+
+.message-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.message-name {
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 0.35rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  letter-spacing: 0.01em;
+}
+
+.message-content {
+  color: #bbb;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+/* Typewriter Cursor */
+.typewriter-cursor {
+  color: #666;
+  font-weight: 300;
+  animation: cursorBlink 0.6s step-end infinite;
+  margin-left: 1px;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Vote Badge */
+.vote-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  letter-spacing: 0.08em;
+}
+
+.vote-yes {
+  background: #052e16;
+  color: #34d399;
+  box-shadow: 0 0 8px rgba(52, 211, 153, 0.15);
+}
+
+.vote-no {
+  background: #450a0a;
+  color: #f87171;
+  box-shadow: 0 0 8px rgba(248, 113, 113, 0.15);
+}
+
+.vote-abstain {
+  background: #262626;
+  color: #888;
+}
+
+/* Vote Tally */
+.vote-tally {
+  background: #111111;
+  border: 1px solid #1e1e1e;
+  border-radius: 12px;
+  padding: 1.75rem;
+}
+
+.vote-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.vote-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.vote-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  width: 60px;
+  color: #666;
+}
+
+.vote-bar-track {
+  flex: 1;
+  height: 28px;
+  background: #1a1a1a;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.vote-bar {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.vote-bar-yes {
+  background: linear-gradient(90deg, #059669, #10b981);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.2);
+}
+
+.vote-bar-no {
+  background: linear-gradient(90deg, #dc2626, #ef4444);
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.2);
+}
+
+.vote-bar-abstain {
+  background: linear-gradient(90deg, #4b5563, #6b7280);
+}
+
+.vote-count {
+  font-size: 1.2rem;
+  font-weight: 800;
+  width: 24px;
+  text-align: right;
+  color: #e5e5e5;
+}
+
+/* Verdict */
+.verdict {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #1a1a1a;
+}
+
+.verdict-yes {
+  color: #34d399;
+  text-shadow: 0 0 20px rgba(52, 211, 153, 0.3);
+}
+
+.verdict-no {
+  color: #f87171;
+  text-shadow: 0 0 20px rgba(248, 113, 113, 0.3);
+}
+
+.verdict-split {
+  color: #fbbf24;
+  text-shadow: 0 0 20px rgba(251, 191, 36, 0.3);
+}
+
+/* Typing Indicator (waiting for next character) */
+.typing-indicator {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  padding: 1.5rem 0;
+}
+
+.typing-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #444;
+  animation: typingBounce 1.2s ease-in-out infinite;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typingBounce {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-6px);
+    opacity: 1;
+  }
+}

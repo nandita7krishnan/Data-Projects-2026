@@ -1,3 +1,15 @@
+# Large model files
+*.gguf
+
+# OS files
+.DS_Store
+
+# Claude Code
+.claude/
+
+# Node
+node_modules/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
