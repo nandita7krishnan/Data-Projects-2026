@@ -43,8 +43,10 @@ function App() {
   return (
     <div className="app">
       <header className="header">
+        <div className="header-ornament" aria-hidden="true">◆</div>
         <h1>The Boardroom</h1>
         <p className="subtitle">Pitch an idea. Six characters debate it.</p>
+        <div className="header-rule" aria-hidden="true" />
       </header>
 
       <PitchInput onSubmit={handleSubmitPitch} disabled={loading} />

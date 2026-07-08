@@ -15,12 +15,12 @@ function PitchInput({ onSubmit, disabled }) {
       <textarea
         value={pitch}
         onChange={(e) => setPitch(e.target.value)}
-        placeholder="Pitch your idea to the boardroom..."
+        placeholder="Present your proposal to the board..."
         rows={3}
         disabled={disabled}
       />
       <button type="submit" disabled={disabled || !pitch.trim()}>
-        {disabled ? 'Debating...' : 'Submit Pitch'}
+        {disabled ? 'Deliberating...' : 'Present to the Board'}
       </button>
     </form>
   )

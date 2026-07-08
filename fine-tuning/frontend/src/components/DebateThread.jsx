@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import CharacterMessage from './CharacterMessage'
 
+const PHASE_NUMERALS = ['I', 'II', 'III', 'IV', 'V']
+
 function DebateThread({ phases, pitch }) {
   // Flatten all messages across phases into a single ordered list for staggered reveal
   const allMessages = []
@@ -32,7 +34,7 @@ function DebateThread({ phases, pitch }) {
   return (
     <div className="debate-thread">
       <div className="pitch-display">
-        <span className="pitch-label">THE PITCH</span>
+        <span className="pitch-label">Pitch Memorandum</span>
         <p>{pitch}</p>
       </div>
 
@@ -42,7 +44,11 @@ function DebateThread({ phases, pitch }) {
 
         return (
           <div key={pi} className="phase fade-in">
-            <h2 className="phase-title">{phase.name}</h2>
+            <h2 className="phase-title">
+              <span className="phase-numeral">{PHASE_NUMERALS[pi]}</span>
+              <span className="phase-separator" aria-hidden="true">—</span>
+              {phase.name}
+            </h2>
             <div className="phase-messages">
               {phaseMessages.map((msg, j) => {
                 // Find the global index for this message

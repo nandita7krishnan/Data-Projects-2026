@@ -55,7 +55,9 @@ function VoteTally({ votes }) {
           <span className="vote-count">{votes.abstain}</span>
         </div>
       </div>
-      <div className={`verdict ${verdictClass}`}>{verdict}</div>
+      <div className="verdict-wrapper">
+        <div className={`verdict verdict-stamp ${verdictClass}`}>{verdict}</div>
+      </div>
     </div>
   )
 }
