@@ -6,12 +6,14 @@ Usage:
     uvicorn backend.main:app --reload --port 8000
 """
 
+import httpx
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from .characters import CHARACTERS, CHARACTER_ORDER
 from .debate import run_debate
+from .ollama_client import GROQ_API_KEY
 
 app = FastAPI(title="Boardroom API")
 
@@ -41,8 +43,29 @@ async def submit_pitch(request: PitchRequest):
     if not request.pitch.strip():
         raise HTTPException(status_code=400, detail="Pitch cannot be empty")
 
-    result = await run_debate(request.pitch.strip())
-    return result
+    if not GROQ_API_KEY:
+        raise HTTPException(
+            status_code=503,
+            detail="GROQ_API_KEY is not set. Add it to backend/.env",
+        )
+
+    try:
+        return await run_debate(request.pitch.strip())
+    except httpx.HTTPStatusError as e:
+        if e.response.status_code == 401:
+            raise HTTPException(
+                status_code=503,
+                detail="Groq API key is invalid or expired. Get a new key at console.groq.com and update backend/.env",
+            ) from e
+        if e.response.status_code == 429:
+            raise HTTPException(
+                status_code=503,
+                detail="Groq rate limit hit. Wait a moment and try again.",
+            ) from e
+        raise HTTPException(
+            status_code=503,
+            detail=f"LLM API error ({e.response.status_code})",
+        ) from e
 
 
 @app.get("/characters")

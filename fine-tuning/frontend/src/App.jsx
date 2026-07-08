@@ -21,7 +21,14 @@ function App() {
       })
 
       if (!response.ok) {
-        throw new Error(`Server error: ${response.status}`)
+        let detail = `Server error: ${response.status}`
+        try {
+          const errBody = await response.json()
+          if (errBody.detail) detail = errBody.detail
+        } catch {
+          // ignore non-JSON error bodies
+        }
+        throw new Error(detail)
       }
 
       const data = await response.json()
