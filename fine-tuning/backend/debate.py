@@ -75,14 +75,15 @@ async def run_debate(pitch: str) -> dict:
             character_name=char["name"],
         )
 
-        # Parse vote
+        # Parse vote and strip the tag from display text
         vote = parse_vote(response)
         votes[vote] += 1
+        clean_response = re.sub(r"\[VOTE:\s*(YES|NO|ABSTAIN)\]", "", response, flags=re.IGNORECASE).strip()
 
         entry = {
             "character": char_key,
             "name": char["name"],
-            "content": response,
+            "content": clean_response,
             "vote": vote,
             "initials": char["initials"],
             "color": char["color"],

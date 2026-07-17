@@ -46,7 +46,7 @@ async def submit_pitch(request: PitchRequest):
     if not GROQ_API_KEY:
         raise HTTPException(
             status_code=503,
-            detail="GROQ_API_KEY is not set. Add it to backend/.env",
+            detail="Ollama is not reachable. Run `ollama serve` and ensure the boardroom model is loaded.",
         )
 
     try:

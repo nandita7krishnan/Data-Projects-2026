@@ -1,23 +1,24 @@
 """
 LLM API client. All model calls go through this file.
 
-Uses Groq API for fast Llama inference.
-Set GROQ_API_KEY environment variable before running.
+Uses the fine-tuned boardroom model served via Modal.
+Set MODAL_ENDPOINT in backend/.env, e.g.:
+    MODAL_ENDPOINT=https://<your-username>--boardroom-inference-serve.modal.run
 """
 
-import asyncio
 import os
 from typing import List, Dict
 
-from dotenv import load_dotenv
 import httpx
+from dotenv import load_dotenv
 
 load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))
 
-# --- Configuration ---
-GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "")
-GROQ_BASE_URL = "https://api.groq.com/openai/v1"
-MODEL_NAME = "llama-3.1-8b-instant"
+MODAL_ENDPOINT = os.environ.get("MODAL_ENDPOINT", "").rstrip("/")
+MODEL_NAME = "boardroom"
+
+# Backwards compat — main.py imports this to gate requests.
+GROQ_API_KEY = MODAL_ENDPOINT or ""
 
 
 async def generate_response(
@@ -25,6 +26,9 @@ async def generate_response(
     messages: List[Dict],
     character_name: str,
 ) -> str:
+    if not MODAL_ENDPOINT:
+        raise RuntimeError("MODAL_ENDPOINT is not set in backend/.env")
+
     full_messages = [{"role": "system", "content": system_prompt}]
     full_messages.extend(messages)
 
@@ -36,26 +40,11 @@ async def generate_response(
         "max_tokens": 256,
     }
 
-    headers = {
-        "Authorization": f"Bearer {GROQ_API_KEY}",
-        "Content-Type": "application/json",
-    }
-
-    for attempt in range(3):
-        async with httpx.AsyncClient(timeout=30.0) as client:
-            response = await client.post(
-                f"{GROQ_BASE_URL}/chat/completions",
-                json=payload,
-                headers=headers,
-            )
-            if response.status_code == 429:
-                wait = 5 * (attempt + 1)
-                print(f"Rate limited on {character_name}, waiting {wait}s...")
-                await asyncio.sleep(wait)
-                continue
-            response.raise_for_status()
-            data = response.json()
-            await asyncio.sleep(3)
-            return data["choices"][0]["message"]["content"].strip()
-
-    raise Exception(f"Rate limited after 3 retries for {character_name}")
+    async with httpx.AsyncClient(timeout=120.0) as client:
+        response = await client.post(
+            f"{MODAL_ENDPOINT}/v1/chat/completions",
+            json=payload,
+        )
+        response.raise_for_status()
+        data = response.json()
+        return data["choices"][0]["message"]["content"].strip()
