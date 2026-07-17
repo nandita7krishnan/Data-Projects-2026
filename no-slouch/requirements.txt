@@ -1,0 +1,7 @@
+mediapipe==0.10.14  # newer releases (0.10.18+) dropped the legacy `mp.solutions.pose` API this app relies on
+opencv-python>=4.8.0
+plyer>=2.1.0
+pystray>=0.19.0
+Pillow>=10.0.0
+numpy>=1.24.0
+playsound==1.2.2
